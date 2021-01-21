@@ -2,10 +2,9 @@ package Animals;
 
 public abstract class Animal {
 
-
-    //These variables are used in game text.
-    public String animalTypePlural = "";
-    public String animalTypeSingular = "";
+    //These variables are used in the text of the game.
+    private String animalTypePlural = "";
+    private String animalTypeSingular = "";
 
     private String name;
     private String gender;
@@ -29,9 +28,13 @@ public abstract class Animal {
     }
 
 
-
-    //-----------------------GETTERS & SETTERS----------------------//
-
+    //<editor-fold desc="Getters & Setters">
+    public String getAnimalTypePlural() {
+        return animalTypePlural;
+    }
+    public String getAnimalTypeSingular() {
+        return animalTypeSingular;
+    }
     public String getName() {
         return name;
     }
@@ -80,6 +83,8 @@ public abstract class Animal {
     public void setEatsSalad(boolean eatsSalad) {
         this.eatsSalad = eatsSalad;
     }
-    //-----------------------END OF GETTERS & SETTERS----------------------//
+    //</editor-fold>
+
+
 
 }

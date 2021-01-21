@@ -1,3 +1,16 @@
+21/1 - 2020
+
+Added following functions:
+- inputGenderOfNewAnimal
+- inputNameOfNewAnimal
+- createAnimalsToPlayersAnimalList
+- buyAnimal
+- actionOfPlayer
+- printBuyAnimalMenu funktion
+- createAnimalsToPlayersAnimalList
+- printPlayerInfo
+- printAPlayersAnimals
+
 
 20/1 - 2020
 

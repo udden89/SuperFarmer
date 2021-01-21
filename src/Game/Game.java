@@ -1,5 +1,7 @@
 package Game;
 import Player.*;
+import Store.Store;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -98,10 +100,7 @@ public class Game {
 
                     gameRounds--;
                     movesBeforeNextRound = 0;
-
-
                 }
-
             }
         }
     }
@@ -114,7 +113,7 @@ public class Game {
 
             switch (action){
                 case 1:
-                    //store.buyAnimal(player);
+                    Store.buyAnimal(player);
                     return true;
 
                 case 2:

@@ -9,5 +9,7 @@ public class Main {
 
         new Game();
 
+        //CodeTesting.inputGenderOfNewAnimal();
+
     }
 }
