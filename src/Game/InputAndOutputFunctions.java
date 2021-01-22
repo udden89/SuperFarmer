@@ -1,11 +1,14 @@
 package Game;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Scanner;
 
 public class InputAndOutputFunctions {
 
 
     public static String line = "________________________________________";
+    public static String wrongInput = "Incorrect input, please enter a valid key";
 
 
     public static int convertStringToInt() {

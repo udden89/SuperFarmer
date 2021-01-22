@@ -1,3 +1,8 @@
+22/1 - 2020
+Worked on small bugs on previous code.
+Added priceMultiplyQuantity function.
+
+
 21/1 - 2020
 
 Added following functions:

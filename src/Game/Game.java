@@ -84,22 +84,23 @@ public class Game {
 
     private void gameLoop(){
 
-        int movesBeforeNextRound = 0;
-
         while(gameRounds != 0){
 
+            int movesBeforeNextRound = 0;
+
             for(Player player : players){
-                GameCAM.printMainMenu(player);
-                actionOfPlayer(player);
+                if(actionOfPlayer(player)){
+                    System.out.println("True in gameLoop");
 
-                //New round
-                movesBeforeNextRound ++;
-                if(movesBeforeNextRound == howManyPlayers){
+                    //New round
+                    movesBeforeNextRound ++;
+                    if(movesBeforeNextRound == howManyPlayers){
 
-                    //animal.decreaseAnimalHealthAndAgePerRound(player, player.getAnimalList());
+                        //animal.decreaseAnimalHealthAndAgePerRound(player, player.getAnimalList());
 
-                    gameRounds--;
-                    movesBeforeNextRound = 0;
+                        gameRounds--;
+                        movesBeforeNextRound = 0;
+                    }
                 }
             }
         }
@@ -107,30 +108,34 @@ public class Game {
 
     public boolean actionOfPlayer(Player player){
 
-        int action = InputAndOutputFunctions.convertStringToInt();
-
         while(true){
 
+            GameCAM.printMainMenu(player);
+            int action = InputAndOutputFunctions.convertStringToInt();
+
             switch (action){
+
                 case 1:
-                    Store.buyAnimal(player);
-                    return true;
+                    if(Store.buyAnimal(player)){
+                        System.out.println("Returned true in actionOfPLayer (case 1)");
+                        return true;
+                    }
 
                 case 2:
-                    //store.buyFood(player);
-                    return true;
+                    if(Store.buyFood(player)){
+                        return true;
+                    }
 
                 case 3:
                     //food.feedAnimal(player, player.getAnimalList(), player.getFoodList());
-                    return true;
+                    //return true;
 
                 case 6:
                     PlayerCAM.printPlayerInfo(player);
                     //InputAndOutputFunctions.pressEnterToContinue();
 
                 default:
-                    GameCAM.printMainMenu(player);
-                    actionOfPlayer(player);
+                    System.out.println("Printed from actionOfPlayer default");
 
             }
 
