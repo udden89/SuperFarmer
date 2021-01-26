@@ -1,18 +1,17 @@
 package Store;
 
-import Game.InputAndOutputFunctions;
-import Player.Player;
+import Game.IOFunctions;
 
 public class StoreCAM {
 
-    public static String askQuantity = "How many do you want to buy?";
+    public static String askQuantity = "How many do you want to buy? ";
 
 
     public static void printBuyAnimalMenu() {
 
-        System.out.println(InputAndOutputFunctions.line);
+        System.out.println(IOFunctions.line);
         System.out.println("Buying animals...:");
-        System.out.println(InputAndOutputFunctions.line);
+        System.out.println(IOFunctions.line);
 
         System.out.println("Press 1: Buy a WOLF for " + Store.getWolfPrice() + " gold");
         System.out.println("Press 2: Buy a PANDA for " + Store.getPandaPrice() + " gold");
@@ -24,9 +23,9 @@ public class StoreCAM {
 
     public static void printFoodMenu(){
 
-        System.out.println(InputAndOutputFunctions.line);
+        System.out.println(IOFunctions.line);
         System.out.println("Buying delicious food");
-        System.out.println(InputAndOutputFunctions.line);
+        System.out.println(IOFunctions.line);
 
         System.out.println("Press 1: Buy FISH for " + Store.getFishPricePerKilo() + "/kg gold");
         System.out.println("Press 2: Buy MEAT for " + Store.getMeatPricePerKilo() + "/kg gold");

@@ -2,15 +2,20 @@ package Game;
 
 import Player.Player;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+
 //CAM Stands for calculations and menus
-public class GameCAM {
+public class GameCAM extends Game implements Serializable {
 
     public static void printMainMenu(Player player){
 
-        System.out.println(InputAndOutputFunctions.line);
+        System.out.println(IOFunctions.line);
         System.out.println(player.getPlayerName() + ", your turn:");
         System.out.println("Turns left: " + Game.gameRounds);
-        System.out.println(InputAndOutputFunctions.line);
+        System.out.println(IOFunctions.line);
         System.out.println(
                 "What do you want to do?\n" +
                         "Press 1 - Buy animals\n" +
@@ -21,6 +26,9 @@ public class GameCAM {
                         "Press 6 - To see your farm\n");
 
     }
+
+
+
 
 
 

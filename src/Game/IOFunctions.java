@@ -4,7 +4,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Scanner;
 
-public class InputAndOutputFunctions {
+//Input & output functions
+public class IOFunctions {
 
 
     public static String line = "________________________________________";
@@ -47,5 +48,19 @@ public class InputAndOutputFunctions {
         }
     }
 
+    public static boolean areYouSure(){
+        System.out.println("Are you sure? This will end your turn.");
+        System.out.println("[Y] - Yes");
+        System.out.println("[N] - No");
 
+        String choice = inputString().toUpperCase();
+
+        if(choice.equals("Y")){
+            return true;
+        }
+        else if(choice.equals("N")) {
+            return false;
+        }
+        return areYouSure();
+    }
 }

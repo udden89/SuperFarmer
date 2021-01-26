@@ -1,3 +1,14 @@
+25/1-2020
+Added following functions:
+- feedAnimalMenu
+- feeding
+- restoreHealth
+
+24/1- 2020
+Added:
+- Feeding class
+
+
 22/1 - 2020
 Worked on small bugs on previous code.
 Added priceMultiplyQuantity function.

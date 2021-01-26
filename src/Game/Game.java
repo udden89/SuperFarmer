@@ -1,4 +1,5 @@
 package Game;
+import Animals.AnimalCAM;
 import Player.*;
 import Store.Store;
 
@@ -7,12 +8,13 @@ import java.util.ArrayList;
 public class Game {
 
     // All the players of the game
-    ArrayList<Player> players = new ArrayList<>();
-
+    protected ArrayList<Player> players = new ArrayList<>();
 
     //Start variables
     public static int gameRounds;
-    private int howManyPlayers;
+    protected static int howManyPlayers;
+
+    private boolean skipIfSaved = false;
 
     public Game() {
         settingUpTheGame();
@@ -22,86 +24,81 @@ public class Game {
 
     private void settingUpTheGame() {
 
-        System.out.println(InputAndOutputFunctions.line);
-        System.out.println("Welcome to Farm of the year game!");
+        if(!skipIfSaved){
+
+            System.out.println(IOFunctions.line);
+            System.out.println("Welcome to Farm of the year game!");
 
 
-        //The rules of the game
-        System.out.println(InputAndOutputFunctions.line);
-        System.out.println("\nThe rules are: \n" +
-                "Buy animals, breed them and sell them. \n" +
-                "The player with most money at the end wins the game");
+            //The rules of the game
+            System.out.println(IOFunctions.line);
+            System.out.println("\nThe rules are: \n" +
+                    "Buy animals, breed them and sell them. \n" +
+                    "The player with most money at the end wins the game");
 
 
-        //Decides how many players.
-        System.out.println(InputAndOutputFunctions.line);
-        System.out.println("\nHow many players (1-4)?");
+            //Decides how many players.
+            System.out.println(IOFunctions.line);
+            System.out.println("\nHow many players (1-4)?");
             while (howManyPlayers < 1 || howManyPlayers > 4) {
-                howManyPlayers = InputAndOutputFunctions.convertStringToInt();
+                howManyPlayers = IOFunctions.convertStringToInt();
                 if (howManyPlayers < 1 || howManyPlayers > 4) {
                     System.out.println("Please enter a player count between 1-4");
                 }
-        System.out.println(InputAndOutputFunctions.line);
-        System.out.println("You have chosen: " + howManyPlayers + " players");
-        }
+                System.out.println(IOFunctions.line);
+                System.out.println("You have chosen: " + howManyPlayers + " players");
+            }
 
 
-        //Sets the player names
-        for (int i = 1; i <= howManyPlayers; i++) {
-            System.out.println("Enter a name for player " + i + ": ");
-            String playerName = InputAndOutputFunctions.inputString();
-            Player player = new Player(playerName);
-            players.add(player);
-            //players.add(Player.createNewPlayer(playerName));                          //
-        }
+            //Sets the player names
+            for (int i = 1; i <= howManyPlayers; i++) {
+                System.out.println("Enter a name for player " + i + ": ");
+                String playerName = IOFunctions.inputString();
+                Player player = new Player(playerName);
+                players.add(player);
+                //players.add(Player.createNewPlayer(playerName));                          //
+            }
 
 
-        //Decides how many rounds in game.
-        System.out.println(InputAndOutputFunctions.line);
-        System.out.println("\nHow many rounds do you want to play (5-30)?");
+            //Decides how many rounds in game.
+            System.out.println(IOFunctions.line);
+            System.out.println("\nHow many rounds do you want to play (5-30)?");
             while (gameRounds < 5 || gameRounds > 30) {
-                gameRounds = InputAndOutputFunctions.convertStringToInt();
+                gameRounds = IOFunctions.convertStringToInt();
                 if (gameRounds < 5 || gameRounds > 30) {
                     System.out.println("Please enter rounds between 5-30");
                 }
-        }
+            }
 
 
-        //Printing all the players and the start money
-        System.out.println(InputAndOutputFunctions.line);
-        System.out.print("You have chosen: " + gameRounds + " rounds");
-        System.out.println("\nAnd our players are: ");
+            //Printing all the players and the start money
+            System.out.println(IOFunctions.line);
+            System.out.print("You have chosen: " + gameRounds + " rounds");
+            System.out.println("\nAnd our players are: ");
             for (Player player : players) {
                 System.out.println(player.getPlayerName() + " with " + player.getGold() + " gold");
             }
 
+            System.out.println(IOFunctions.line);
+            System.out.println("GOOD LUCK!!!!");
 
-        System.out.println(InputAndOutputFunctions.line);
-        System.out.println("GOOD LUCK!!!!");
-
-
+        }
     }
 
     private void gameLoop(){
 
         while(gameRounds != 0){
 
-            int movesBeforeNextRound = 0;
+            for(int i = gameRounds; i > 0 ; i--){
 
-            for(Player player : players){
-                if(actionOfPlayer(player)){
-                    System.out.println("True in gameLoop");
+                for(Player player : players){
+                    if(actionOfPlayer(player)){
 
-                    //New round
-                    movesBeforeNextRound ++;
-                    if(movesBeforeNextRound == howManyPlayers){
+                        AnimalCAM.decreaseAnimalHealthAndAgePerRound(player, player.getAnimalList());
 
-                        //animal.decreaseAnimalHealthAndAgePerRound(player, player.getAnimalList());
-
-                        gameRounds--;
-                        movesBeforeNextRound = 0;
                     }
                 }
+                gameRounds--;
             }
         }
     }
@@ -111,40 +108,37 @@ public class Game {
         while(true){
 
             GameCAM.printMainMenu(player);
-            int action = InputAndOutputFunctions.convertStringToInt();
+            int action = IOFunctions.convertStringToInt();
 
             switch (action){
 
                 case 1:
                     if(Store.buyAnimal(player)){
-                        System.out.println("Returned true in actionOfPLayer (case 1)");
                         return true;
                     }
+                    break;
 
                 case 2:
                     if(Store.buyFood(player)){
                         return true;
                     }
+                    break;
 
                 case 3:
-                    //food.feedAnimal(player, player.getAnimalList(), player.getFoodList());
-                    //return true;
+                    if(Feeding.feedAnimalMenu(player, player.getAnimalList())){
+                        return true;
+                    }
+                    break;
 
                 case 6:
                     PlayerCAM.printPlayerInfo(player);
                     //InputAndOutputFunctions.pressEnterToContinue();
+                    break;
 
                 default:
                     System.out.println("Printed from actionOfPlayer default");
 
             }
-
         }
-
-
     }
-
-
-
-
 }
