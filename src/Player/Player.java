@@ -12,10 +12,9 @@ public class Player {
     private int stackOfKiloMeat = 0;
     private int stackOfKiloSalad = 0;
 
-
-
     private ArrayList<Animal> animalList = new ArrayList<>();
 
+    private ArrayList<Animal> deadAnimals = new ArrayList<>();
 
     public Player(String playerName){
         this.playerName = playerName;
@@ -55,6 +54,12 @@ public class Player {
     }
     public void setGold(int gold) {
         this.gold = gold;
+    }
+    public ArrayList<Animal> getDeadAnimals() {
+        return deadAnimals;
+    }
+    public void setDeadAnimals(ArrayList<Animal> deadAnimals) {
+        this.deadAnimals = deadAnimals;
     }
     //</editor-fold>
 

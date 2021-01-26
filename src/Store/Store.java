@@ -2,7 +2,7 @@ package Store;
 
 import Animals.AnimalCAM;
 import Animals.Wolf;
-import Game.InputAndOutputFunctions;
+import Game.IOFunctions;
 import Player.Player;
 
 public class Store {
@@ -15,9 +15,9 @@ public class Store {
     private static int babyJediPrice = 3000;
 
     //Food prices:
-    private static int meatPricePerKilo = 200;
-    private static int fishPricePerKilo = 220;
-    private static int saladPricePerKilo = 150;
+    private static int meatPricePerKilo = 69;
+    private static int fishPricePerKilo = 129;
+    private static int saladPricePerKilo = 29;
 
     public static boolean buyAnimal(Player player){
 
@@ -25,41 +25,48 @@ public class Store {
 
             StoreCAM.printBuyAnimalMenu();
 
-            int choice = InputAndOutputFunctions.convertStringToInt();
+            int choice = IOFunctions.convertStringToInt();
+            String animalType = " ";
 
             switch (choice){
                 case 1: //WOLF
-
-                    String animalType = "WOLF";
-
+                    animalType = "WOLF";
                     AnimalCAM.printAnimalInfo(animalType);
-                    buyProcess(player, wolfPrice, animalType);
-
-                    /*Prints a question about quantity
-                    System.out.println(StoreCAM.askQuantity);
-                    int quantity = InputAndOutputFunctions.convertStringToInt();
-
-                    //Checks if enough with gold, and if so, create new animal and reduce gold.
-                    if(StoreCAM.askEnoughWithGold (player.getGold(), quantity * wolfPrice)){
-
-                        player.setGold (player.getGold() - (quantity * wolfPrice));
-                        createAnimalToPlayersAnimalList(player,quantity,animalType);
-                        System.out.println("Returned true in BuyAnimal 1");
+                    if(buyProcess(player, wolfPrice, animalType)){
                         return true;
                     }
-                    break;
 
-                     */
-
+                case 2: //Panda
+                    animalType = "PANDA";
+                    AnimalCAM.printAnimalInfo(animalType);
+                    if(buyProcess(player, pandaPrice, animalType)){
+                        return true;
+                    }
+                case 3: //Bear
+                    animalType = "BEAR";
+                    AnimalCAM.printAnimalInfo(animalType);
+                    if(buyProcess(player, bearPrice, animalType)){
+                        return true;
+                    }
+                case 4: //Eagle
+                    animalType = "EAGLE";
+                    AnimalCAM.printAnimalInfo(animalType);
+                    if(buyProcess(player, eaglePrice, animalType)){
+                        return true;
+                    }
+                case 5: //Baby Jedi
+                    animalType = "BABY JEDI";
+                    AnimalCAM.printAnimalInfo(animalType);
+                    if(buyProcess(player, babyJediPrice, animalType)){
+                        return true;
+                    }
                 case 9:
                 return false;
 
                 default:
                     System.out.println("Printed from BuyAnimal default");
-
             }
         }
-
     }
 
     public static boolean buyFood(Player player){
@@ -68,26 +75,25 @@ public class Store {
 
             StoreCAM.printFoodMenu();
 
-            int choice = InputAndOutputFunctions.convertStringToInt();
+            int choice = IOFunctions.convertStringToInt();
 
             switch (choice){
                 case 1: //FISH
-                    if(buyProcess(player,fishPricePerKilo, "FISH")){
+                    if(buyProcess(player, fishPricePerKilo, "FISH")){
                         return true;
                     }
                 case 2: //MEAT
-                    if(buyProcess(player,meatPricePerKilo, "MEAT")){
+                    if(buyProcess(player, meatPricePerKilo, "MEAT")){
                         return true;
                     }
                 case 3: //SALAD
-                    if(buyProcess(player,saladPricePerKilo, "SALAD")){
+                    if(buyProcess(player, saladPricePerKilo, "SALAD")){
                         return true;
                     }
-                case 9:
+                case 9: //Go back
                     return false;
-
                 default:
-                    System.out.println(InputAndOutputFunctions.wrongInput);
+                    System.out.println(IOFunctions.wrongInput);
             }
         }
     }
@@ -96,15 +102,13 @@ public class Store {
 
         //Prints a question about quantity
         System.out.println(StoreCAM.askQuantity);
-        int quantity = InputAndOutputFunctions.convertStringToInt();
+        int quantity = IOFunctions.convertStringToInt();
 
-        //Checks if enough with gold, and if so, create new animal and reduce gold.
         if(StoreCAM.askEnoughWithGold (player.getGold(), quantity * price)){
 
             player.setGold (player.getGold() - (quantity * price));
 
             switch (whatToBuy.toUpperCase()){
-
                 case "WOLF", "BEAR", "PANDA", "EAGLE", "BABY JEDI" :
                     createAnimalToPlayersAnimalList(player, quantity, whatToBuy);
                     return true;
@@ -145,9 +149,6 @@ public class Store {
             }
         }
     }
-
-
-
 
     //<editor-fold desc="Getters & Setters">
 
@@ -200,7 +201,5 @@ public class Store {
         Store.saladPricePerKilo = saladPricePerKilo;
     }
     //</editor-fold>
-
-
 
 }

@@ -12,12 +12,17 @@ public abstract class Animal {
     private int age = 1;
     private int deathAtAge = (int) (Math.random() * (4))+7; //Dead between age of 7-10
     private int health = 100;
+    private int maxHealth = 100;
+    private int kiloOfFoodNeededFor10to30PercentHealth = 0;
 
     private boolean eatsMeat = true;
     private boolean eatsFish = true;
     private boolean eatsSalad = false;
 
-    Animal(String name, String gender, boolean eatsFish, boolean eatsMeat, boolean eatsSalad, String animalTypeSingular, String animalTypePlural) {
+
+
+    Animal(String name, String gender, boolean eatsFish, boolean eatsMeat, boolean eatsSalad,
+           String animalTypeSingular, String animalTypePlural, int kiloOfFoodNeededFor10to30PercentHealth) {
         this.name = name;
         this.gender = gender;
         this.eatsFish = eatsFish;
@@ -25,6 +30,8 @@ public abstract class Animal {
         this.eatsSalad = eatsSalad;
         this.animalTypeSingular = animalTypeSingular;
         this.animalTypePlural = animalTypePlural;
+        this.kiloOfFoodNeededFor10to30PercentHealth = kiloOfFoodNeededFor10to30PercentHealth;
+
     }
 
 
@@ -34,6 +41,12 @@ public abstract class Animal {
     }
     public String getAnimalTypeSingular() {
         return animalTypeSingular;
+    }
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+    public int getKiloOfFoodNeededFor10to30PercentHealth() {
+        return kiloOfFoodNeededFor10to30PercentHealth;
     }
     public String getName() {
         return name;

@@ -9,7 +9,9 @@ public class BabyJedi extends Animal{
     private static boolean eatsFish = true;
     private static boolean eatsSalad = true;
 
+    private static int kiloOfFoodNeededFor10to30PercentHealth = 1;
+
     public BabyJedi(String name, String gender) {
-        super(name, gender, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural);
+        super(name, gender, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, kiloOfFoodNeededFor10to30PercentHealth);
     }
 }

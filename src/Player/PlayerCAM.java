@@ -1,7 +1,7 @@
 package Player;
 
 import Animals.Animal;
-import Game.InputAndOutputFunctions;
+import Game.IOFunctions;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class PlayerCAM {
 
     public static void printPlayerInfo(Player player){
-        System.out.println(InputAndOutputFunctions.line);
+        System.out.println(IOFunctions.line);
         System.out.println(player.getPlayerName() + ", you have in your farm: \n");
         System.out.println(player.getGold() + " gold");
         printAPlayersAnimals(player.getAnimalList());
@@ -20,7 +20,7 @@ public class PlayerCAM {
 
     public static void printAPlayersAnimals(ArrayList<Animal> animals){
 
-        System.out.println(InputAndOutputFunctions.line);
+        System.out.println(IOFunctions.line);
         System.out.println("ANIMALS: ");
 
         for(Animal animal : animals){
