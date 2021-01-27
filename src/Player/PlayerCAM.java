@@ -12,7 +12,7 @@ public class PlayerCAM {
         System.out.println(IOFunctions.line);
         System.out.println(player.getPlayerName() + ", you have in your farm: \n");
         System.out.println(player.getGold() + " gold");
-        printAPlayersAnimals(player.getAnimalList());
+        printAPlayersAnimals(player.getAnimals());
 
         //Print food as well.
 

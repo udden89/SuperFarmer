@@ -8,7 +8,13 @@ import java.util.ArrayList;
 //CAM Stands for calculations and menus
 public class AnimalCAM {
 
-    public static String inputGenderOfNewAnimal(String animalType) {
+
+    public static String genderOfNewAnimal(String animalType, boolean random) {
+
+        if (random){
+            int number = (int) (Math.random() * 10) + 1;
+            return number <= 5 ? "FEMALE" : "MALE";
+        }
 
         System.out.println(IOFunctions.line);
         System.out.println("What gender do you want on your new " + animalType + "?" );
@@ -38,7 +44,7 @@ public class AnimalCAM {
         return IOFunctions.inputString();
     }
 
-    public static void printAnimalInfo(String animalType){
+    public static void printAboutAnimals(String animalType){
 
         switch (animalType.toUpperCase()){
 
@@ -74,12 +80,63 @@ public class AnimalCAM {
 
     }
 
+    public static void printAndSelectAnimal(ArrayList<Animal> animals, String menuName , String verb){
+
+        System.out.println(IOFunctions.line);
+        System.out.println(menuName + "... (in printAndSelectAnimal function");
+        System.out.println(IOFunctions.line + "\n");
+
+        int number = 1;
+
+        for (Animal animal : animals) {
+
+            //Enter X to feed your ANIMAL (type: CLASS, health: 100, gender: Female).
+            System.out.println("Enter " + number + " to " + verb + " your "
+                    + animal.getName().toUpperCase() + " (type: "
+                    + animal.getClass().getSimpleName() + ", health: "
+                    + animal.getHealth() + ", gender: "
+                    + animal.getGender() + ").");
+            number++;
+
+        }
+
+    }
+
+    public static int findIndexOfSelectedAnimal(ArrayList<Animal> animals, int playersChoice){
+
+        //Loop for finding the index of selected animal.
+        try{
+            for(int i = 0; i <animals.size(); i++){
+            if(animals.get(playersChoice-1).getName().equals(animals.get(i).getName())){
+                return i;
+            }
+        }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return -1;
+    }
+
+    public static boolean askIfSameAnimalClass(ArrayList<Animal> animals, int index){
+
+        for(int i = 0; i <Animal.typesOfAnimals.length; i++){
+
+            if(animals.get(index).getAnimalType().equals(Animal.typesOfAnimals[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    //Decrease health and increase age
     public static void decreaseAnimalHealthAndAgePerRound(Player player, ArrayList<Animal> animals){
 
         for(Animal animal : animals){
             int health = animal.getMaxHealth();
-            double min = (0.1*health);
-            double max = ((0.3*health)-min)+1;
+            double min = (0.1 * health);
+            double max = ( (0.3 * health) -min) +1;
             animal.setHealth(animal.getHealth() - ((int) (Math.random() * (max))+ (int)min));
             animal.setAge(animal.getAge()+1);
 

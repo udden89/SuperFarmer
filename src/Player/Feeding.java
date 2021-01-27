@@ -20,6 +20,8 @@ public class Feeding {
             int number = 1;
             for (Animal animal : animals) {
 
+
+
                 //Enter X to feed your ANIMAL (type: CLASS, health: 100, gender: Female).
                 System.out.println("Enter " + number + " to feed your "
                         + animal.getName().toUpperCase() + " (type: "

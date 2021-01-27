@@ -1,5 +1,6 @@
 package Store;
 
+import Animals.Animal;
 import Animals.AnimalCAM;
 import Animals.Wolf;
 import Game.IOFunctions;
@@ -31,32 +32,32 @@ public class Store {
             switch (choice){
                 case 1: //WOLF
                     animalType = "WOLF";
-                    AnimalCAM.printAnimalInfo(animalType);
+                    AnimalCAM.printAboutAnimals(animalType);
                     if(buyProcess(player, wolfPrice, animalType)){
                         return true;
                     }
 
                 case 2: //Panda
                     animalType = "PANDA";
-                    AnimalCAM.printAnimalInfo(animalType);
+                    AnimalCAM.printAboutAnimals(animalType);
                     if(buyProcess(player, pandaPrice, animalType)){
                         return true;
                     }
                 case 3: //Bear
                     animalType = "BEAR";
-                    AnimalCAM.printAnimalInfo(animalType);
+                    AnimalCAM.printAboutAnimals(animalType);
                     if(buyProcess(player, bearPrice, animalType)){
                         return true;
                     }
                 case 4: //Eagle
                     animalType = "EAGLE";
-                    AnimalCAM.printAnimalInfo(animalType);
+                    AnimalCAM.printAboutAnimals(animalType);
                     if(buyProcess(player, eaglePrice, animalType)){
                         return true;
                     }
                 case 5: //Baby Jedi
                     animalType = "BABY JEDI";
-                    AnimalCAM.printAnimalInfo(animalType);
+                    AnimalCAM.printAboutAnimals(animalType);
                     if(buyProcess(player, babyJediPrice, animalType)){
                         return true;
                     }
@@ -110,7 +111,7 @@ public class Store {
 
             switch (whatToBuy.toUpperCase()){
                 case "WOLF", "BEAR", "PANDA", "EAGLE", "BABY JEDI" :
-                    createAnimalToPlayersAnimalList(player, quantity, whatToBuy);
+                    createAnimalToPlayersAnimalList(player, quantity, whatToBuy, false);
                     return true;
                 case "FISH":
                     player.setStackOfKiloFish(player.getStackOfKiloFish() + quantity);
@@ -128,24 +129,28 @@ public class Store {
         return false;
     }
 
-    public static void createAnimalToPlayersAnimalList(Player player, int quantity, String animalType){
+    public static void createAnimalToPlayersAnimalList(Player player, int quantity, String animalType, boolean randomGender){
 
         for(int i = 0; i < quantity; i++){
 
-            if(animalType.equals("WOLF")){
-                player.getAnimalList().add(new Wolf(AnimalCAM.inputNameOfNewAnimal(animalType), AnimalCAM.inputGenderOfNewAnimal(animalType)));
+           // if(animalType.equalsIgnoreCase(Animal.typeOfAnimal[i].)){
+             //   player.getAnimals().add(new );
+            //}
+
+            if(animalType.equalsIgnoreCase("WOLF")){
+                player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
-            else if(animalType.equals("PANDA")){
-                player.getAnimalList().add(new Wolf(AnimalCAM.inputNameOfNewAnimal(animalType), AnimalCAM.inputGenderOfNewAnimal(animalType)));
+            else if(animalType.equalsIgnoreCase("PANDA")){
+                player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
-            else if(animalType.equals("BEAR")){
-                player.getAnimalList().add(new Wolf(AnimalCAM.inputNameOfNewAnimal(animalType), AnimalCAM.inputGenderOfNewAnimal(animalType)));
+            else if(animalType.equalsIgnoreCase("BEAR")){
+                player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
-            else if(animalType.equals("EAGLE")){
-                player.getAnimalList().add(new Wolf(AnimalCAM.inputNameOfNewAnimal(animalType), AnimalCAM.inputGenderOfNewAnimal(animalType)));
+            else if(animalType.equalsIgnoreCase("EAGLE")){
+                player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
-            else if(animalType.equals("BABY JEDI")){
-                player.getAnimalList().add(new Wolf(AnimalCAM.inputNameOfNewAnimal(animalType), AnimalCAM.inputGenderOfNewAnimal(animalType)));
+            else if(animalType.equalsIgnoreCase("BABY JEDI")){
+                player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
         }
     }

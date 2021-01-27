@@ -1,5 +1,6 @@
 package Game;
 import Animals.AnimalCAM;
+import Animals.Breeding;
 import Player.*;
 import Store.Store;
 
@@ -94,7 +95,7 @@ public class Game {
                 for(Player player : players){
                     if(actionOfPlayer(player)){
 
-                        AnimalCAM.decreaseAnimalHealthAndAgePerRound(player, player.getAnimalList());
+                        AnimalCAM.decreaseAnimalHealthAndAgePerRound(player, player.getAnimals());
 
                     }
                 }
@@ -125,7 +126,13 @@ public class Game {
                     break;
 
                 case 3:
-                    if(Feeding.feedAnimalMenu(player, player.getAnimalList())){
+                    if(Feeding.feedAnimalMenu(player, player.getAnimals())){
+                        return true;
+                    }
+                    break;
+
+                case 4:
+                    if(Breeding.breedAnimalMenu(player, player.getAnimals())){
                         return true;
                     }
                     break;

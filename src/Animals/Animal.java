@@ -1,46 +1,61 @@
 package Animals;
 
-public abstract class Animal {
+import java.util.ArrayList;
+
+public abstract class Animal extends Object {
 
     //These variables are used in the text of the game.
-    private String animalTypePlural = "";
-    private String animalTypeSingular = "";
+    public String animalTypePlural = "";
+    public String animalType = "";
 
     private String name;
     private String gender;
 
-    private int age = 1;
+    private int age = 0;
     private int deathAtAge = (int) (Math.random() * (4))+7; //Dead between age of 7-10
     private int health = 100;
     private int maxHealth = 100;
     private int kiloOfFoodNeededFor10to30PercentHealth = 0;
 
+    private int maxNewbornBabies = 0;
+
     private boolean eatsMeat = true;
     private boolean eatsFish = true;
     private boolean eatsSalad = false;
 
+    public static final String[] typesOfAnimals = {"WOLF", "PANDA"};
+    //public static Animal.[] typeOfAnimal ={};
 
 
     Animal(String name, String gender, boolean eatsFish, boolean eatsMeat, boolean eatsSalad,
-           String animalTypeSingular, String animalTypePlural, int kiloOfFoodNeededFor10to30PercentHealth) {
+           String animalType, String animalTypePlural, int kiloOfFoodNeededFor10to30PercentHealth, int maxNewbornBabies) {
         this.name = name;
         this.gender = gender;
         this.eatsFish = eatsFish;
         this.eatsMeat = eatsMeat;
         this.eatsSalad = eatsSalad;
-        this.animalTypeSingular = animalTypeSingular;
+        this.animalType = animalType;
         this.animalTypePlural = animalTypePlural;
         this.kiloOfFoodNeededFor10to30PercentHealth = kiloOfFoodNeededFor10to30PercentHealth;
+        this.maxNewbornBabies = maxNewbornBabies;
 
     }
+
+
 
 
     //<editor-fold desc="Getters & Setters">
+    public int getMaxNewbornBabies() {
+        return maxNewbornBabies;
+    }
+    public void setMaxNewbornBabies(int maxNewbornBabies) {
+        this.maxNewbornBabies = maxNewbornBabies;
+    }
     public String getAnimalTypePlural() {
         return animalTypePlural;
     }
-    public String getAnimalTypeSingular() {
-        return animalTypeSingular;
+    public String getAnimalType() {
+        return animalType;
     }
     public int getMaxHealth() {
         return maxHealth;

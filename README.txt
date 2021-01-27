@@ -1,3 +1,7 @@
+
+28/1-2020
+Started on the breeding class and its functions
+
 25/1-2020
 Added following functions:
 - feedAnimalMenu
