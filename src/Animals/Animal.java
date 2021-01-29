@@ -24,7 +24,6 @@ public abstract class Animal extends Object {
     private boolean eatsSalad = false;
 
     public static final String[] typesOfAnimals = {"WOLF", "PANDA"};
-    //public static Animal.[] typeOfAnimal ={};
 
 
     Animal(String name, String gender, boolean eatsFish, boolean eatsMeat, boolean eatsSalad,

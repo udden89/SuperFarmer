@@ -26,9 +26,9 @@ public class AnimalCAM {
             String choice = IOFunctions.inputString().toUpperCase();
 
             if (choice.equals("F")) {
-                return "Female";
+                return "FEMALE";
             } else if (choice.equals("M")) {
-                return "Male";
+                return "MALE";
             } else {
                 System.out.println("Please enter F or M");
             }
@@ -80,25 +80,27 @@ public class AnimalCAM {
 
     }
 
-    public static void printAndSelectAnimal(ArrayList<Animal> animals, String menuName , String verb){
+    public static void printAnimalToChoose(ArrayList<Animal> animals, String menuName , String verb){
 
         System.out.println(IOFunctions.line);
-        System.out.println(menuName + "... (in printAndSelectAnimal function");
+        System.out.println(menuName + "... ");
         System.out.println(IOFunctions.line + "\n");
 
         int number = 1;
 
         for (Animal animal : animals) {
 
-            //Enter X to feed your ANIMAL (type: CLASS, health: 100, gender: Female).
             System.out.println("Enter " + number + " to " + verb + " your "
                     + animal.getName().toUpperCase() + " (type: "
                     + animal.getClass().getSimpleName() + ", health: "
                     + animal.getHealth() + ", gender: "
                     + animal.getGender() + ").");
+
             number++;
 
         }
+
+        System.out.println("Press 0 to go back.");
 
     }
 
@@ -117,18 +119,6 @@ public class AnimalCAM {
         }
         return -1;
     }
-
-    public static boolean askIfSameAnimalClass(ArrayList<Animal> animals, int index){
-
-        for(int i = 0; i <Animal.typesOfAnimals.length; i++){
-
-            if(animals.get(index).getAnimalType().equals(Animal.typesOfAnimals[i])){
-                return true;
-            }
-        }
-        return false;
-    }
-
 
     //Decrease health and increase age
     public static void decreaseAnimalHealthAndAgePerRound(Player player, ArrayList<Animal> animals){

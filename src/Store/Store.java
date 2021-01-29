@@ -35,37 +35,48 @@ public class Store {
                     AnimalCAM.printAboutAnimals(animalType);
                     if(buyProcess(player, wolfPrice, animalType)){
                         return true;
+                    }else{
+                        continue;
                     }
+
 
                 case 2: //Panda
                     animalType = "PANDA";
                     AnimalCAM.printAboutAnimals(animalType);
                     if(buyProcess(player, pandaPrice, animalType)){
                         return true;
+                    }else{
+                        continue;
                     }
                 case 3: //Bear
                     animalType = "BEAR";
                     AnimalCAM.printAboutAnimals(animalType);
                     if(buyProcess(player, bearPrice, animalType)){
                         return true;
+                    }else{
+                        continue;
                     }
                 case 4: //Eagle
                     animalType = "EAGLE";
                     AnimalCAM.printAboutAnimals(animalType);
                     if(buyProcess(player, eaglePrice, animalType)){
                         return true;
+                    }else{
+                        continue;
                     }
                 case 5: //Baby Jedi
                     animalType = "BABY JEDI";
                     AnimalCAM.printAboutAnimals(animalType);
                     if(buyProcess(player, babyJediPrice, animalType)){
                         return true;
+                    }else{
+                        continue;
                     }
-                case 9:
+                case 0:
                 return false;
 
                 default:
-                    System.out.println("Printed from BuyAnimal default");
+                    System.out.println("Error from BuyAnimal default");
             }
         }
     }
@@ -83,15 +94,22 @@ public class Store {
                     if(buyProcess(player, fishPricePerKilo, "FISH")){
                         return true;
                     }
+                    else{
+                        continue;
+                    }
                 case 2: //MEAT
                     if(buyProcess(player, meatPricePerKilo, "MEAT")){
                         return true;
+                    }else{
+                        continue;
                     }
                 case 3: //SALAD
                     if(buyProcess(player, saladPricePerKilo, "SALAD")){
                         return true;
+                    }else{
+                        continue;
                     }
-                case 9: //Go back
+                case 0: //Go back
                     return false;
                 default:
                     System.out.println(IOFunctions.wrongInput);
@@ -129,13 +147,10 @@ public class Store {
         return false;
     }
 
+    //---------TODO Change "new Wolf" when having all animals classes ready
     public static void createAnimalToPlayersAnimalList(Player player, int quantity, String animalType, boolean randomGender){
 
         for(int i = 0; i < quantity; i++){
-
-           // if(animalType.equalsIgnoreCase(Animal.typeOfAnimal[i].)){
-             //   player.getAnimals().add(new );
-            //}
 
             if(animalType.equalsIgnoreCase("WOLF")){
                 player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));

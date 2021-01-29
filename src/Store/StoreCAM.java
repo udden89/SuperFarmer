@@ -18,7 +18,7 @@ public class StoreCAM {
         System.out.println("Press 3: Buy a BEAR for " + Store.getBearPrice() + " gold");
         System.out.println("Press 4: Buy a EAGLE for " + Store.getEaglePrice() + " gold");
         System.out.println("Press 5: Buy a BABY JEDI for " + Store.getBabyJediPrice() + " gold" );
-        System.out.println("\nPress 9: To go back");
+        System.out.println("\nPress 0: To go back");
     }
 
     public static void printFoodMenu(){
@@ -30,10 +30,16 @@ public class StoreCAM {
         System.out.println("Press 1: Buy FISH for " + Store.getFishPricePerKilo() + "/kg gold");
         System.out.println("Press 2: Buy MEAT for " + Store.getMeatPricePerKilo() + "/kg gold");
         System.out.println("Press 3: Buy SALLAD for " + Store.getSaladPricePerKilo() + "/kg gold");
+        System.out.println("\nPress 0 to go back");
 
     }
 
     public static boolean askEnoughWithGold(int playerGold, int price){
+
+        //Error handler for "java.lang.ArithmeticException"
+        if(price == 0){
+            return false;
+        }
 
         int max = (playerGold / price);
 

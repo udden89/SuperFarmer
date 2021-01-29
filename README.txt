@@ -1,6 +1,8 @@
+29/1-2020
+Continued with breeding class and it's functions.
 
 28/1-2020
-Started on the breeding class and its functions
+Started on the breeding class and its functions.
 
 25/1-2020
 Added following functions:

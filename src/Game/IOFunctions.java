@@ -10,6 +10,7 @@ public class IOFunctions {
 
     public static String line = "________________________________________";
     public static String wrongInput = "Incorrect input, please enter a valid key";
+    public static String notInStock = "Sorry, you don't have any in stock!";
 
 
     public static int convertStringToInt() {
@@ -38,6 +39,16 @@ public class IOFunctions {
         }
     }
 
+    public static boolean tryInt(){
+        try{
+
+            return true;
+        }
+        catch (java.lang.IndexOutOfBoundsException e){
+            return false;
+        }
+    }
+
     public static void pressEnterToContinue(){
         System.out.println(line);
         System.out.println("Press ENTER to continue...");
@@ -48,19 +59,19 @@ public class IOFunctions {
         }
     }
 
-    public static boolean areYouSure(){
-        System.out.println("Are you sure? This will end your turn.");
+    public static boolean areYouSure(String areYouSureYouWantTo){
+        System.out.println("Are you sure you want to " + areYouSureYouWantTo + " This will end your turn.");
         System.out.println("[Y] - Yes");
         System.out.println("[N] - No");
 
-        String choice = inputString().toUpperCase();
+        String choice = inputString();
 
-        if(choice.equals("Y")){
+        if(choice.equalsIgnoreCase("Y")){
             return true;
         }
-        else if(choice.equals("N")) {
+        else if(choice.equalsIgnoreCase("N")) {
             return false;
         }
-        return areYouSure();
+        return areYouSure(areYouSureYouWantTo);
     }
 }

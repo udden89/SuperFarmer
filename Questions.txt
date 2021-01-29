@@ -1,0 +1,3 @@
+- Hur kör jag recursion med scanner utan att det buggar sig?
+- Kan jag i funktionen createAnimalToPlayersAnimalList skapa en array med classnamn och kalla på den vid skapande av en ny instance t.ex. new typesOfAnimals[i]();
+- Kan jag sätta en variabel i ett variabelnamn? tex i en loop: sout (mittDjur1) och så är det "1" i variabelnamnet som ökar för varje varv.

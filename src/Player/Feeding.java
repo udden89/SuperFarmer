@@ -1,6 +1,7 @@
 package Player;
 
 import Animals.Animal;
+import Animals.AnimalCAM;
 import Game.IOFunctions;
 
 import java.util.ArrayList;
@@ -12,40 +13,25 @@ public class Feeding {
 
         while(true){
 
-            //<editor-fold desc="PRINTING FEED MENU">
-            System.out.println(IOFunctions.line);
-            System.out.println("Feeding animals...:");
-            System.out.println(IOFunctions.line + "\n");
-
-            int number = 1;
-            for (Animal animal : animals) {
-
-
-
-                //Enter X to feed your ANIMAL (type: CLASS, health: 100, gender: Female).
-                System.out.println("Enter " + number + " to feed your "
-                        + animal.getName().toUpperCase() + " (type: "
-                        + animal.getClass().getSimpleName() + ", health: "
-                        + animal.getHealth() + ", gender: "
-                        + animal.getGender() + ").");
-                number++;
-            }
-            //</editor-fold>
+            AnimalCAM.printAnimalToChoose(animals,"Feeding animals", "feed");
 
             int choice = IOFunctions.convertStringToInt();
+            if (choice == 0){
+                return false;
+            }
 
             //Loop for finding the right animal of users choice.
             for(int i = 0; i <animals.size(); i++){
                 if(animals.get(choice-1).getName().equals(animals.get(i).getName())){
 
-                    switch (animals.get(i).getClass().getSimpleName().toLowerCase()){
-                        case "wolf":
-                            feeding(player, animals, i);
-                            return true;
-                        case "9":
-                            return false;
+                    switch (animals.get(i).getClass().getSimpleName().toUpperCase()){
+                        case "WOLF":
+                            if(feeding(player, animals, i)){
+                                return true;
+                            }
+
                         default:
-                            System.out.println("Something got wrong...");
+                            return false;
                     }
                 }
             }
@@ -73,36 +59,41 @@ public class Feeding {
                         + " kilo available. Salad restores 10-30% health/kg)");
             }
 
-            System.out.println("Press 9 to go back");
+            System.out.println("Press 0 to go back");
 
-            String choice = IOFunctions.inputString().toUpperCase();
+            String choice = IOFunctions.inputString();
+            System.out.println(choice);
 
-            int kilo = 0;
+            int kilo = 1;
 
-            switch (choice){
+            switch (choice.toUpperCase()){
 
                 case "F":
-                    System.out.println("How many kilo of fish do you want to use?");
-                    kilo = IOFunctions.convertStringToInt();
-                    if(!IOFunctions.areYouSure()){
-                        return false;
-                    }
-                    if(player.getStackOfKiloFish() >= kilo){
 
+                    if(player.getStackOfKiloFish() >= kilo){
+                        System.out.println("How many kilo of fish do you want to use?");
+                        kilo = IOFunctions.convertStringToInt();
+                        if(!IOFunctions.areYouSure(" use these fish?")){
+                            return false;
+                        }
                         restoreHealth(animals.get(index), kilo);
                         player.setStackOfKiloFish(player.getStackOfKiloFish()-kilo);
-                        return true;
+                    return true;
+                    }
+                    else {
+                        System.out.println(IOFunctions.notInStock);
+                        return false;
                     }
 
                 case "M":
 
                 case "S":
 
-                case "9":
+                case "0":
                     return false;
 
                 default:
-                    System.out.println("Please enter F, M, S or 9");
+                    System.out.println("Please enter F, M, S or 0");
 
             }
         }
