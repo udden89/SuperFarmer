@@ -1,6 +1,11 @@
 package Store;
 
+import Animals.Animal;
+import Animals.AnimalCAM;
 import Game.IOFunctions;
+import Game.*;
+
+import java.util.ArrayList;
 
 public class StoreCAM {
 
@@ -13,7 +18,7 @@ public class StoreCAM {
         System.out.println("Buying animals...:");
         System.out.println(IOFunctions.line);
 
-        System.out.println("Press 1: Buy a WOLF for " + Store.getWolfPrice() + " gold");
+        System.out.println("Press 1: Buy a WOLF for " + Store.animalPrices.get("WOLF") + " gold");
         System.out.println("Press 2: Buy a PANDA for " + Store.getPandaPrice() + " gold");
         System.out.println("Press 3: Buy a BEAR for " + Store.getBearPrice() + " gold");
         System.out.println("Press 4: Buy a EAGLE for " + Store.getEaglePrice() + " gold");
@@ -34,9 +39,39 @@ public class StoreCAM {
 
     }
 
+    public static void printSellMenu(ArrayList<Animal> animals){
+
+        System.out.println(IOFunctions.line);
+        System.out.println("Selling animal ");
+        System.out.println(IOFunctions.line + "\n");
+
+        int number = 1;
+
+        for (Animal animal : animals) {
+
+            System.out.println("Enter " + number + " to sell your "
+                    + animal.getName().toUpperCase() + " for "
+                    + Store.animalPrices.get(animal.animalType) + " gold (type: "
+                    + animal.getAnimalType() + ", health: "
+                    + animal.getHealth() + ", gender: "
+                    + animal.getGender() + ").");
+
+            number++;
+        }
+
+        System.out.println("Press 0 to go back.");
+        int choice = IOFunctions.convertStringToInt();
+
+        if(Game.players.size() > 1){
+            System.out.println("Press 1 to sell to another player");
+            System.out.println("Press 2 to sell to the store");
+        }
+
+    }
+
     public static boolean askEnoughWithGold(int playerGold, int price){
 
-        //Error handler for "java.lang.ArithmeticException"
+        //Error handler for "java.lang.ArithmeticException" when calculating max.
         if(price == 0){
             return false;
         }
@@ -54,9 +89,6 @@ public class StoreCAM {
 
         return price * quantity;
     }
-
-
-
 
 }
 

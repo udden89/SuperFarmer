@@ -1,3 +1,10 @@
+1/2 - 2020
+
+
+31/1 - 2020
+Finally starting to get all the game loops and functions in breeding class.
+decreaseAnimalHealthAndAgePerRound function does not work intended.
+
 29/1-2020
 Continued with breeding class and it's functions.
 

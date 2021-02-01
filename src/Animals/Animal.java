@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public abstract class Animal extends Object {
 
     //These variables are used in the text of the game.
-    public String animalTypePlural = "";
-    public String animalType = "";
+    public String animalTypePlural;
+    public String animalType;
 
     private String name;
     private String gender;
@@ -15,15 +15,16 @@ public abstract class Animal extends Object {
     private int deathAtAge = (int) (Math.random() * (4))+7; //Dead between age of 7-10
     private int health = 100;
     private int maxHealth = 100;
-    private int kiloOfFoodNeededFor10to30PercentHealth = 0;
+    private int kiloOfFoodNeededFor10to30PercentHealth;
 
-    private int maxNewbornBabies = 0;
+    private int maxNewbornBabies;
 
-    private boolean eatsMeat = true;
-    private boolean eatsFish = true;
-    private boolean eatsSalad = false;
+    private boolean eatsMeat;
+    private boolean eatsFish;
+    private boolean eatsSalad;
 
-    public static final String[] typesOfAnimals = {"WOLF", "PANDA"};
+    public boolean isSick = false;
+    public int roundsBeforeDeathIfSick = (int) (Math.random() * 3) + 1;
 
 
     Animal(String name, String gender, boolean eatsFish, boolean eatsMeat, boolean eatsSalad,
@@ -110,6 +111,11 @@ public abstract class Animal extends Object {
     public void setEatsSalad(boolean eatsSalad) {
         this.eatsSalad = eatsSalad;
     }
+    public boolean isSick() {
+        return isSick;}
+    public void setSick(boolean sick) {
+        isSick = sick;    }
+
     //</editor-fold>
 
 

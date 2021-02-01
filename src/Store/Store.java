@@ -6,14 +6,28 @@ import Animals.Wolf;
 import Game.IOFunctions;
 import Player.Player;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Store {
 
-    //Animal prices:
+
+    //Animal prices: (Better for these to be in animal class?)
     private static int wolfPrice = 1000;
     private static int pandaPrice = 2500;
     private static int bearPrice = 1500;
     private static int eaglePrice = 1000;
     private static int babyJediPrice = 3000;
+
+    public static HashMap<String, Integer> animalPrices = new HashMap<>();
+
+    public Store(){
+        animalPrices.put("WOLF", 1000);
+        animalPrices.put("PANDA", 2500);
+        animalPrices.put("BEAR", 1500);
+        animalPrices.put("EAGLE", 1000);
+        animalPrices.put("BABY JEDI", 3000);
+    }
 
     //Food prices:
     private static int meatPricePerKilo = 69;
@@ -33,7 +47,7 @@ public class Store {
                 case 1: //WOLF
                     animalType = "WOLF";
                     AnimalCAM.printAboutAnimals(animalType);
-                    if(buyProcess(player, wolfPrice, animalType)){
+                    if(buyProcess(player, animalPrices.get(animalType), animalType)){
                         return true;
                     }else{
                         continue;
@@ -43,7 +57,7 @@ public class Store {
                 case 2: //Panda
                     animalType = "PANDA";
                     AnimalCAM.printAboutAnimals(animalType);
-                    if(buyProcess(player, pandaPrice, animalType)){
+                    if(buyProcess(player, animalPrices.get(animalType), animalType)){
                         return true;
                     }else{
                         continue;
@@ -51,7 +65,7 @@ public class Store {
                 case 3: //Bear
                     animalType = "BEAR";
                     AnimalCAM.printAboutAnimals(animalType);
-                    if(buyProcess(player, bearPrice, animalType)){
+                    if(buyProcess(player, animalPrices.get(animalType), animalType)){
                         return true;
                     }else{
                         continue;
@@ -59,7 +73,7 @@ public class Store {
                 case 4: //Eagle
                     animalType = "EAGLE";
                     AnimalCAM.printAboutAnimals(animalType);
-                    if(buyProcess(player, eaglePrice, animalType)){
+                    if(buyProcess(player, animalPrices.get(animalType), animalType)){
                         return true;
                     }else{
                         continue;
@@ -67,7 +81,7 @@ public class Store {
                 case 5: //Baby Jedi
                     animalType = "BABY JEDI";
                     AnimalCAM.printAboutAnimals(animalType);
-                    if(buyProcess(player, babyJediPrice, animalType)){
+                    if(buyProcess(player, animalPrices.get(animalType), animalType)){
                         return true;
                     }else{
                         continue;
@@ -145,6 +159,13 @@ public class Store {
             }
         }
         return false;
+    }
+
+    public static boolean sellAnimal(Player player, ArrayList<Animal> animals){
+
+        StoreCAM.printSellMenu(animals);
+
+        return true;
     }
 
     //---------TODO Change "new Wolf" when having all animals classes ready

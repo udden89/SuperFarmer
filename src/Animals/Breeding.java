@@ -16,18 +16,15 @@ public class Breeding {
 
                 AnimalCAM.printAnimalToChoose(animals, "Breeding", "breed");
 
-                //Choose a animal to breed and return its index.
+                //Choose a first animal to breed and return its index.
                 int index = IOFunctions.convertStringToInt()-1;
 
-                //Choose a suitable breeding partner and return its index.
-                int indexOfBreedingPartner = chooseBreedingPartner(animals.get(index), animals, animals.get(index).getAnimalType());
-                System.out.println("----BreedingPartner 1:----" + indexOfBreedingPartner);      //Used debugging
-
-                if (breedingAndAddIfBabies(player, animals.get(index), animals.get(indexOfBreedingPartner))) {
+                //Choose a second suitable animal to the first picked. Returns true if a player chose to breed.
+                if (breedingAndAddIfBabies(player, animals.get(index), chooseBreedingPartner(animals.get(index), animals, animals.get(index)))) {
                     return true;
                 }
 
-            //Needed because "0" is the standard back key and it interferes with the arraylist index.
+            //Needed because "0" is the standard back key and it interferes with the arraylist index if user want to to go back.
             }catch (java.lang.IndexOutOfBoundsException e){
                 return false;
             }
@@ -35,61 +32,10 @@ public class Breeding {
         }
     }
 
-    private static int chooseBreedingPartner(Animal firstAnimal, ArrayList<Animal> animals, String animalType){
-
-        int number = 1;
-        int index = 0;
-        int skipped = -1; //This is needed for combining real index and "fake" index of the printed one from "printAnimalToChoose" function.
-
-        while(true){
-
-            for (Animal animal : animals) {
-
-                //Filter of what to print out (suitable partners).
-                if(firstAnimal.getName().equalsIgnoreCase(animal.getName())
-                || firstAnimal.getGender().equalsIgnoreCase(animal.getGender())
-                || !firstAnimal.getAnimalType().equalsIgnoreCase(animalType)){
-                    System.out.println("---- skipped in for loop:" + skipped);   //Used debugging
-                    skipped++;
-                    continue;
-                }
-
-                System.out.println("Press " + number + " - Choose your "
-                        + animal.getName().toUpperCase() + " (type: "
-                        + animal.getClass().getSimpleName() + ", health: "
-                        + animal.getHealth() + ", gender: "
-                        + animal.getGender() + ")."
-                        + animals.indexOf(animal));
-                number++;
-
-            }
-
-            //Used for logic for getting printed numbers in synk with real index.
-            if(animals.indexOf(firstAnimal) == animals.size()-1){
-                skipped--;
-            }
-
-            index = (IOFunctions.convertStringToInt() + skipped);
-            System.out.println("---- skipped total:" + skipped);            //Used debugging
-
-            if(index <= 1 || index >= number){
-                System.out.println("----BreedingPartner 2:----"+ index);    //Used debugging
-                return index;
-            }
-            else {
-                System.out.println("Enter a number between 1-" + number);   //Used debugging
-            }
-
-        }
-    }
-
     private static boolean breedingAndAddIfBabies(Player player, Animal selectedAnimal, Animal breedingPartner){
 
-        System.out.println("----SelectedAnimal 3:----"+ player.getAnimals().indexOf(selectedAnimal));
-        System.out.println("----BreedingPartner 4:----"+ player.getAnimals().indexOf(breedingPartner));
 
-        double chanceOfNewBaby = (Math.random() * 100) + 1;
-        System.out.println("DEBUG 0: " + chanceOfNewBaby); //DEBUG
+        double chanceOfNewBaby = (Math.random() * 100) + 1; // 1-100 chance
         double bonusChance = 1;
         int howManyBabies = (int) (Math.random() * selectedAnimal.getMaxNewbornBabies())+1;
         double tenPercentOfMaxHP = 0.1 * selectedAnimal.getMaxHealth();
@@ -102,16 +48,12 @@ public class Breeding {
             }
             bonusChance += 0.01;
         }
-        System.out.println("DEBUG 1: " + bonusChance); //DEBUG
 
         chanceOfNewBaby *= bonusChance;
 
-        System.out.println("DEBUG 2: " + chanceOfNewBaby); //DEBUG
-
-        System.out.println(selectedAnimal.getName() + player.getAnimals().indexOf(selectedAnimal)
-                + " and " + breedingPartner.getName()
-                + player.getAnimals().indexOf(breedingPartner)
-                + " have a chance of " + Math.floor(50 + (100 * bonusChance))
+        // Prints: X and X have a chance of X% to get up to X babies.
+        System.out.println(selectedAnimal.getName() + " and " + breedingPartner.getName()
+                + " have a chance of " + Math.floor(50 + (100 * (bonusChance-1)))
                 +  "% of getting up to " +
                 selectedAnimal.getMaxNewbornBabies() + " babies.");
 
@@ -119,18 +61,56 @@ public class Breeding {
             return false;
         }
 
-
+        //Breed and create new animals if chance variable hits over 50.
         if(chanceOfNewBaby > 50){
             System.out.println("Congratz!! You have successfully breaded " + howManyBabies + " new baby " + selectedAnimal.animalTypePlural);
             System.out.println("Rolled: " + chanceOfNewBaby + " (50+ needed");
             Store.createAnimalToPlayersAnimalList(player, howManyBabies, selectedAnimal.getAnimalType(),true);
         }else {
             System.out.println("Sorry, there were no new cute babies...");
-            System.out.println("Rolled: " + chanceOfNewBaby + " (50+ needed");
+            System.out.println("Rolled: " + Math.floor(chanceOfNewBaby) + " (50+ needed)");
         }
         return true;
     }
 
+    private static Animal chooseBreedingPartner(Animal firstAnimal, ArrayList<Animal> animals, Animal secondAnimal){
+
+        int number = 0;
+
+        //list that holds all suitable partners.
+        ArrayList<Animal> tempAnimalList = new ArrayList<>();
+
+        while(true){
+
+            System.out.println("1");
+
+            for (Animal animal : animals) {
+
+                //Filter of what to not add into suitable partners.
+                if(firstAnimal.getName().equalsIgnoreCase(animal.getName())
+                        || firstAnimal.getGender().equalsIgnoreCase(animal.getGender())
+                        || !firstAnimal.getAnimalType().equalsIgnoreCase(secondAnimal.getAnimalType())){
+                    System.out.println("2");
+                    continue;
+                }
+                tempAnimalList.add(animal);
+            }
+
+            //Prints all suitable partners.
+            for(Animal animal : tempAnimalList){
+
+                System.out.println("Press " + (number+1) + " - Choose your "
+                        + animal.getName() + " (type: "
+                        + animal.getAnimalType() + ", health: "
+                        + animal.getHealth() + ", gender: "
+                        + animal.getGender() + ").");
+
+                number++;
+            }
+            return tempAnimalList.get(IOFunctions.convertStringToInt()-1);
+        }
+
+    }
 
 
 }

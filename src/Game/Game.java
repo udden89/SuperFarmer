@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Game {
 
     // All the players of the game
-    protected ArrayList<Player> players = new ArrayList<>();
+    public static ArrayList<Player> players = new ArrayList<>();
 
     //Start variables
     public static int gameRounds;
@@ -19,6 +19,7 @@ public class Game {
 
     public Game() {
         settingUpTheGame();
+        Store store = new Store();
         gameLoop();
     }
 
@@ -133,6 +134,12 @@ public class Game {
 
                 case 4:
                     if(Breeding.breedAnimalMenu(player, player.getAnimals())){
+                        return true;
+                    }
+                    break;
+
+                case 5:
+                    if(Store.sellAnimal(player, player.getAnimals())){
                         return true;
                     }
                     break;
