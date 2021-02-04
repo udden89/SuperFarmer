@@ -27,6 +27,7 @@ public abstract class Animal extends Object {
     public int roundsBeforeDeathIfSick = (int) (Math.random() * 3) + 1;
 
 
+
     Animal(String name, String gender, boolean eatsFish, boolean eatsMeat, boolean eatsSalad,
            String animalType, String animalTypePlural, int kiloOfFoodNeededFor10to30PercentHealth, int maxNewbornBabies) {
         this.name = name;

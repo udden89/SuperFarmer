@@ -41,31 +41,7 @@ public class StoreCAM {
 
     public static void printSellMenu(ArrayList<Animal> animals){
 
-        System.out.println(IOFunctions.line);
-        System.out.println("Selling animal ");
-        System.out.println(IOFunctions.line + "\n");
 
-        int number = 1;
-
-        for (Animal animal : animals) {
-
-            System.out.println("Enter " + number + " to sell your "
-                    + animal.getName().toUpperCase() + " for "
-                    + Store.animalPrices.get(animal.animalType) + " gold (type: "
-                    + animal.getAnimalType() + ", health: "
-                    + animal.getHealth() + ", gender: "
-                    + animal.getGender() + ").");
-
-            number++;
-        }
-
-        System.out.println("Press 0 to go back.");
-        int choice = IOFunctions.convertStringToInt();
-
-        if(Game.players.size() > 1){
-            System.out.println("Press 1 to sell to another player");
-            System.out.println("Press 2 to sell to the store");
-        }
 
     }
 
@@ -85,10 +61,6 @@ public class StoreCAM {
         return true;
     }
 
-    public static int totalPrice(int price, int quantity){
-
-        return price * quantity;
-    }
 
 }
 

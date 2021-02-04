@@ -12,7 +12,7 @@ public class Player {
     private int stackOfKiloMeat = 0;
     private int stackOfKiloSalad = 0;
 
-    private ArrayList<Animal> animals = new ArrayList<>();
+    public ArrayList<Animal> animals = new ArrayList<>();
     private ArrayList<Animal> deadAnimals = new ArrayList<>();
 
     public Player(String playerName){
@@ -21,7 +21,7 @@ public class Player {
 
 
     //<editor-fold desc="Getters & Setters">
-    public ArrayList<Animal> getAnimals() {
+    public ArrayList<Animal> animals() {
         return animals;
     }
     public void setAnimals(ArrayList<Animal> animals) {

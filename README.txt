@@ -1,5 +1,5 @@
-1/2 - 2020
-
+1-3/2 - 2020
+Sell functions almost finished.
 
 31/1 - 2020
 Finally starting to get all the game loops and functions in breeding class.

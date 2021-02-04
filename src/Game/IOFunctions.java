@@ -39,16 +39,6 @@ public class IOFunctions {
         }
     }
 
-    public static boolean tryInt(){
-        try{
-
-            return true;
-        }
-        catch (java.lang.IndexOutOfBoundsException e){
-            return false;
-        }
-    }
-
     public static void pressEnterToContinue(){
         System.out.println(line);
         System.out.println("Press ENTER to continue...");

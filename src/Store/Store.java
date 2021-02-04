@@ -3,6 +3,7 @@ package Store;
 import Animals.Animal;
 import Animals.AnimalCAM;
 import Animals.Wolf;
+import Game.Game;
 import Game.IOFunctions;
 import Player.Player;
 
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Store {
-
 
     //Animal prices: (Better for these to be in animal class?)
     private static int wolfPrice = 1000;
@@ -36,6 +36,7 @@ public class Store {
 
     public static boolean buyAnimal(Player player){
 
+
         while(true){
 
             StoreCAM.printBuyAnimalMenu();
@@ -52,7 +53,6 @@ public class Store {
                     }else{
                         continue;
                     }
-
 
                 case 2: //Panda
                     animalType = "PANDA";
@@ -161,32 +161,101 @@ public class Store {
         return false;
     }
 
+    //TODO Shorten this method!
     public static boolean sellAnimal(Player player, ArrayList<Animal> animals){
 
-        StoreCAM.printSellMenu(animals);
+        System.out.println(IOFunctions.line);
+        System.out.println("Selling animal ");
+        System.out.println(IOFunctions.line + "\n");
+
+
+        int number = 1;
+        for (Animal animal : animals) {
+
+            double sellPrice = ((double) animal.getHealth()/100)*animalPrices.get(animal.animalType);
+
+            System.out.println("Enter " + number + " to sell your "
+                    + animal.getName().toUpperCase() + " for "
+                    + sellPrice + " gold (type: "
+                    + animal.getAnimalType() + ", health: "
+                    + animal.getHealth() + ", gender: "
+                    + animal.getGender() + ").");
+
+            number++;
+        }
+
+        System.out.println("Press 0 to go back.");
+        int indexOfAnimalToSell = IOFunctions.convertStringToInt()-1;
+
+        if(indexOfAnimalToSell == -1){ //Not to get java.lang.IndexOutOfBoundsException when using 0 as "go back".
+            return false;
+        }
+        double sellPrice = ((double)animals.get(indexOfAnimalToSell).getHealth()/100)*animalPrices.get(animals.get(indexOfAnimalToSell).animalType);
+
+        if(Game.players.size() > 1){
+            System.out.println("Press 1 to sell to another player");
+            System.out.println("Press 2 to sell to the store");
+            int userChoiceSellToStoreOrPlayer = IOFunctions.convertStringToInt();
+
+            if(userChoiceSellToStoreOrPlayer == 1){
+                System.out.println("Choose which player you want to sell to");
+
+                int counter = 1;
+                for(Player players : Game.players){
+
+                    if(!players.getPlayerName().equalsIgnoreCase(Game.players.get(0).getPlayerName())){
+                        System.out.println("[" + counter + "] - " + players.getPlayerName());
+                        counter++;
+                    }
+
+                }
+                int indexOfPlayerToSellTo = IOFunctions.convertStringToInt();
+
+                if(IOFunctions.areYouSure("You want to sell your " + animals.get(indexOfAnimalToSell).getName()
+                        + " to " + Game.players.get(indexOfPlayerToSellTo).getPlayerName() + "?")) {
+
+                    player.setGold((int) (player.getGold() + sellPrice));
+
+                    //Add and remove animal between owners.
+                    Game.players.get(indexOfPlayerToSellTo).animals().add(player.animals.get(indexOfAnimalToSell));
+                    player.animals.remove(indexOfAnimalToSell);
+
+                    //Remove gold from other player.
+                    Game.players.get(indexOfPlayerToSellTo).setGold((int) (Game.players.get(indexOfPlayerToSellTo).getGold() - sellPrice));
+                }
+            }
+
+        }else{
+            if(IOFunctions.areYouSure("Sell your animal " + animals.get(indexOfAnimalToSell-1))){
+                player.setGold((int) (player.getGold() + sellPrice));
+                player.animals.remove(indexOfAnimalToSell-1);
+                return true;
+            }
+        }
 
         return true;
     }
 
-    //---------TODO Change "new Wolf" when having all animals classes ready
+    //TODO Change "new Wolf" when having all animals classes ready (ENUMS!!!!!!!!?????????????????????)
     public static void createAnimalToPlayersAnimalList(Player player, int quantity, String animalType, boolean randomGender){
 
         for(int i = 0; i < quantity; i++){
 
+
             if(animalType.equalsIgnoreCase("WOLF")){
-                player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
+                player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
             else if(animalType.equalsIgnoreCase("PANDA")){
-                player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
+                player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
             else if(animalType.equalsIgnoreCase("BEAR")){
-                player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
+                player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
             else if(animalType.equalsIgnoreCase("EAGLE")){
-                player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
+                player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
             else if(animalType.equalsIgnoreCase("BABY JEDI")){
-                player.getAnimals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
+                player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
         }
     }

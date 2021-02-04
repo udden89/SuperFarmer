@@ -96,7 +96,7 @@ public class Game {
                 for(Player player : players){
                     if(actionOfPlayer(player)){
 
-                        AnimalCAM.decreaseAnimalHealthAndAgePerRound(player, player.getAnimals());
+                        AnimalCAM.decreaseAnimalHealthAndAgePerRound(player, player.animals());
 
                     }
                 }
@@ -127,19 +127,19 @@ public class Game {
                     break;
 
                 case 3:
-                    if(Feeding.feedAnimalMenu(player, player.getAnimals())){
+                    if(Feeding.feedAnimalMenu(player, player.animals())){
                         return true;
                     }
                     break;
 
                 case 4:
-                    if(Breeding.breedAnimalMenu(player, player.getAnimals())){
+                    if(Breeding.breedAnimalMenu(player, player.animals())){
                         return true;
                     }
                     break;
 
                 case 5:
-                    if(Store.sellAnimal(player, player.getAnimals())){
+                    if(Store.sellAnimal(player, player.animals())){
                         return true;
                     }
                     break;
