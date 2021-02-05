@@ -13,6 +13,27 @@ public class IOFunctions {
     public static String notInStock = "Sorry, you don't have any in stock!";
 
 
+    public static int convertStringToInt(int min, int max) {
+
+        Scanner scan = new Scanner(System.in);
+
+        while(true){
+            try{
+                int number = Integer.parseInt(scan.nextLine());
+                if(number < min || number > max){
+                    System.out.println("Please enter a correct number");
+                    continue;
+                }
+
+                return number;
+
+            }catch(Exception exception) {
+                System.out.println("Please enter a correct number");
+            }
+        }
+    }
+
+    //Overload
     public static int convertStringToInt() {
 
         Scanner scan = new Scanner(System.in);
@@ -50,7 +71,7 @@ public class IOFunctions {
     }
 
     public static boolean areYouSure(String areYouSureYouWantTo){
-        System.out.println("Are you sure you want to " + areYouSureYouWantTo + " This will end your turn.");
+        System.out.println(areYouSureYouWantTo + " This will end your turn.");
         System.out.println("[Y] - Yes");
         System.out.println("[N] - No");
 
@@ -59,7 +80,7 @@ public class IOFunctions {
         if(choice.equalsIgnoreCase("Y")){
             return true;
         }
-        else if(choice.equalsIgnoreCase("N")) {
+        else if(choice.equalsIgnoreCase("N") || choice.equalsIgnoreCase("0")) {
             return false;
         }
         return areYouSure(areYouSureYouWantTo);

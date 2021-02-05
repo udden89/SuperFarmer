@@ -1,33 +1,38 @@
-1-3/2 - 2020
+5/2 - 2021
+Added a random name generator (not finished).
+Sell functions work as intendent.
+
+
+1-3/2 - 2021
 Sell functions almost finished.
 
-31/1 - 2020
+31/1 - 2021
 Finally starting to get all the game loops and functions in breeding class.
 decreaseAnimalHealthAndAgePerRound function does not work intended.
 
-29/1-2020
+29/1-2021
 Continued with breeding class and it's functions.
 
-28/1-2020
+28/1-2021
 Started on the breeding class and its functions.
 
-25/1-2020
+25/1-2021
 Added following functions:
 - feedAnimalMenu
 - feeding
 - restoreHealth
 
-24/1- 2020
+24/1- 2021
 Added:
 - Feeding class
 
 
-22/1 - 2020
+22/1 - 2021
 Worked on small bugs on previous code.
 Added priceMultiplyQuantity function.
 
 
-21/1 - 2020
+21/1 - 2021
 
 Added following functions:
 - inputGenderOfNewAnimal
@@ -41,7 +46,7 @@ Added following functions:
 - printAPlayersAnimals
 
 
-20/1 - 2020
+20/1 - 2021
 
 - Added some start attributes into Animal class
 - Added a start of an game loop.
@@ -51,7 +56,7 @@ Added following functions:
 - Added some more classes (CAM = calculations and menus)
 
 
-20/1 - 2020
+20/1 - 2021
 Added the first classes of the game.
 
 

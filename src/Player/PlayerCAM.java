@@ -1,6 +1,7 @@
 package Player;
 
 import Animals.Animal;
+import Game.Game;
 import Game.IOFunctions;
 
 import java.util.ArrayList;
@@ -40,6 +41,20 @@ public class PlayerCAM {
             }
             System.out.println(" ");
         }
+    }
+
+    public static void checkIfPlayerLost(){
+
+        int x = Game.players.size();
+
+        for(int i = 0; i < x; i++){
+            if(Game.players.get(i).getGold() == 0 && Game.players.get(i).animals().size() < 1){
+                System.out.println(Game.players.get(i).getPlayerName() + " has been eliminated and lost the game.");
+                Game.players.remove(i);
+                x--;
+            }
+        }
+
     }
 
 }

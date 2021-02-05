@@ -17,7 +17,7 @@ public class Breeding {
                 AnimalCAM.printAnimalToChoose(animals, "Breeding", "breed");
 
                 //Choose a first animal to breed and return its index.
-                int index = IOFunctions.convertStringToInt()-1;
+                int index = IOFunctions.convertStringToInt(0,animals.size())-1;
 
                 //Choose a second suitable animal to the first picked. Returns true if a player chose to breed.
                 if (breedingAndAddIfBabies(player, animals.get(index), chooseBreedingPartner(animals.get(index), animals, animals.get(index)))) {

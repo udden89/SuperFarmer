@@ -1,6 +1,7 @@
 package Animals;
 
 import Game.IOFunctions;
+import Game.RandomGameMode;
 import Player.Player;
 
 import java.util.ArrayList;
@@ -41,7 +42,8 @@ public class AnimalCAM {
         System.out.println(IOFunctions.line);
         System.out.println("Give your new " + animalType + " a name: ");
 
-        return IOFunctions.inputString();
+        return RandomGameMode.randomName();//TODO remove this when not debugging and activate the line below
+        //return IOFunctions.inputString();
     }
 
     public static void printAboutAnimals(String animalType){

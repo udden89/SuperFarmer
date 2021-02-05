@@ -164,6 +164,8 @@ public class Store {
     //TODO Shorten this method!
     public static boolean sellAnimal(Player player, ArrayList<Animal> animals){
 
+        boolean areYouSure;
+
         System.out.println(IOFunctions.line);
         System.out.println("Selling animal ");
         System.out.println(IOFunctions.line + "\n");
@@ -192,10 +194,17 @@ public class Store {
         }
         double sellPrice = ((double)animals.get(indexOfAnimalToSell).getHealth()/100)*animalPrices.get(animals.get(indexOfAnimalToSell).animalType);
 
+        //If there are more than 1 player.
         if(Game.players.size() > 1){
+
             System.out.println("Press 1 to sell to another player");
             System.out.println("Press 2 to sell to the store");
             int userChoiceSellToStoreOrPlayer = IOFunctions.convertStringToInt();
+
+            if(userChoiceSellToStoreOrPlayer < 1 || userChoiceSellToStoreOrPlayer > 2){
+                System.out.println();
+                userChoiceSellToStoreOrPlayer = IOFunctions.convertStringToInt();
+            }
 
             if(userChoiceSellToStoreOrPlayer == 1){
                 System.out.println("Choose which player you want to sell to");
@@ -209,11 +218,11 @@ public class Store {
                     }
 
                 }
-                int indexOfPlayerToSellTo = IOFunctions.convertStringToInt();
+                //Who to sell to.
+                int indexOfPlayerToSellTo = IOFunctions.convertStringToInt( 1, Game.players.size());
 
-                if(IOFunctions.areYouSure("You want to sell your " + animals.get(indexOfAnimalToSell).getName()
-                        + " to " + Game.players.get(indexOfPlayerToSellTo).getPlayerName() + "?")) {
-
+                areYouSure = IOFunctions.areYouSure("Do you both agree of this transaction of " + animals.get(indexOfAnimalToSell).getName()+ "?");
+                if(areYouSure) {
                     player.setGold((int) (player.getGold() + sellPrice));
 
                     //Add and remove animal between owners.
@@ -223,17 +232,26 @@ public class Store {
                     //Remove gold from other player.
                     Game.players.get(indexOfPlayerToSellTo).setGold((int) (Game.players.get(indexOfPlayerToSellTo).getGold() - sellPrice));
                 }
-            }
 
-        }else{
-            if(IOFunctions.areYouSure("Sell your animal " + animals.get(indexOfAnimalToSell-1))){
-                player.setGold((int) (player.getGold() + sellPrice));
-                player.animals.remove(indexOfAnimalToSell-1);
-                return true;
+            }else{
+                areYouSure = IOFunctions.areYouSure("Are you sure you want to sell " + animals.get(indexOfAnimalToSell).getName()+ "?");
+                if(areYouSure) {
+                    player.setGold((int) (player.getGold() + sellPrice));
+                    player.animals.remove(indexOfAnimalToSell);
+                }
             }
+            return areYouSure;
         }
 
-        return true;
+        if(Game.players.size() == 1){
+            areYouSure = IOFunctions.areYouSure("Are you sure you want to sell " + animals.get(indexOfAnimalToSell).getName() + "?");
+            if(areYouSure) {
+                player.setGold((int) (player.getGold() + sellPrice));
+                player.animals.remove(indexOfAnimalToSell);
+            }
+            return areYouSure;
+        }
+        return false;
     }
 
     //TODO Change "new Wolf" when having all animals classes ready (ENUMS!!!!!!!!?????????????????????)
