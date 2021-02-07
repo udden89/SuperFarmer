@@ -3,6 +3,7 @@ import Animals.AnimalCAM;
 import Animals.Breeding;
 import Player.*;
 import Store.Store;
+import Store.Veterinary;
 
 import java.util.ArrayList;
 
@@ -98,11 +99,12 @@ public class Game {
                 for(Player player : players){
                     if(actionOfPlayer(player)){
 
-                        AnimalCAM.decreaseAnimalHealthAndAgePerRound(player, player.animals());
-                        PlayerCAM.checkIfPlayerLost();
-
                     }
                 }
+
+                AnimalCAM.decreaseAnimalHealthAndAgePerRound();
+                PlayerCAM.checkIfPlayerLost();
+
                 gameRounds--;
             }
         }
@@ -148,6 +150,12 @@ public class Game {
                     break;
 
                 case 6:
+                    if(Veterinary.cureAnimal(player, player.animals)){
+                        return true;
+                    }
+                    break;
+
+                case 7:
                     PlayerCAM.printPlayerInfo(player);
                     //InputAndOutputFunctions.pressEnterToContinue();
                     break;

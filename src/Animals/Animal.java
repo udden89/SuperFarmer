@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public abstract class Animal extends Object {
 
     //These variables are used in the text of the game.
-    public String animalTypePlural;
     public String animalType;
+    public String animalTypePlural;
 
     private String name;
     private String gender;

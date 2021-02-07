@@ -23,7 +23,8 @@ public class GameCAM extends Game implements Serializable {
                         "Press 3 - Feed animals\n" +
                         "Press 4 - Breed animals\n" +
                         "Press 5 - Sell animals\n" +
-                        "Press 6 - To see your farm\n");
+                        "Press 6 - To see veterinary\n" +
+                        "Press 7 - To see your farm\n");
 
     }
 

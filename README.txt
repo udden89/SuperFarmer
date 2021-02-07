@@ -1,3 +1,6 @@
+7/2 - 2021
+Added Veterinary class and its basic functions.
+
 5/2 - 2021
 Added a random name generator (not finished).
 Sell functions work as intendent.

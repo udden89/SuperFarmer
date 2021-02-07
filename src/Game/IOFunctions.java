@@ -85,4 +85,13 @@ public class IOFunctions {
         }
         return areYouSure(areYouSureYouWantTo);
     }
+
+    public static int randomNumber(int minNumber, int maxNumber){
+
+        int min = minNumber;
+        int max = maxNumber;
+
+        return (int)(Math.random() * max) + min;
+
+    }
 }

@@ -278,6 +278,8 @@ public class Store {
         }
     }
 
+
+
     //<editor-fold desc="Getters & Setters">
 
     public static int getWolfPrice() {

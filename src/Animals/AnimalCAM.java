@@ -1,5 +1,6 @@
 package Animals;
 
+import Game.Game;
 import Game.IOFunctions;
 import Game.RandomGameMode;
 import Player.Player;
@@ -123,9 +124,56 @@ public class AnimalCAM {
     }
 
     //Decrease health, increase age and making animal sick.
-    public static void decreaseAnimalHealthAndAgePerRound(Player player, ArrayList<Animal> animals){
+    public static void decreaseAnimalHealthAndAgePerRound(){
 
-        for(int i = 0; i < animals.size(); i++){
+        //Player player, ArrayList<Animal> animals
+
+
+        for (int i = 0; i < Game.players.size(); i++){
+
+            ArrayList<Animal> animals = Game.players.get(i).animals;
+            Player player = Game.players.get(i);
+
+            for(int j = 0; j < animals.size(); j++){
+
+                Animal animal = animals.get(j);
+
+                int health = animal.getMaxHealth();
+                int sickRandom = (int) (Math.random() * 100) + 1;
+                double min = (0.1 * health); //Min 10% of health
+                double max = ( (0.3 * health) -min) +1; //Max 30% of health
+                int decreaseHealth = (int) (Math.random() * (max))+ (int)min;
+
+                animal.setHealth(animal.getHealth() - decreaseHealth);
+                animal.setAge(animal.getAge()+1);
+
+                //If animal is already sick remove a "life" if available.
+                if(animal.isSick){
+                    animal.roundsBeforeDeathIfSick--;
+                }
+
+                //If health < 0, animal reached max health or animal is sick remove the animal.
+                if(animal.getHealth() <= 0
+                        || animal.getAge() == animal.getDeathAtAge()
+                        || animal.roundsBeforeDeathIfSick == 0){
+
+                    System.out.println(player.getPlayerName() + ", your " + animal.getName() + " has died");
+                    animals.remove(animal);
+                    i--;
+                    continue;
+                }
+
+                if(!animal.isSick && sickRandom <= 100){
+                    animal.setSick(true);
+                    System.out.println(player.getPlayerName() + ", your " + animal.getName() + " has become ill and needs to see a veterinary"
+                            + " (otherwise it will die under the next 1-3 rounds).");
+                }
+
+            }
+
+        }
+
+        /*for(int i = 0; i < animals.size(); i++){
 
             int health = animals.get(i).getMaxHealth();
             int sickRandom = (int) (Math.random() * 100) + 1;
@@ -156,7 +204,7 @@ public class AnimalCAM {
                 System.out.println(player.getPlayerName() + ", your " + animals.get(i).getName() + " has become ill and needs to see a veterinary"
                 + " (otherwise it will die under the next 1-3 rounds).");
             }
-        }
+        }*/
     }
 
 }

@@ -25,7 +25,8 @@ public class PlayerCAM {
         System.out.println("ANIMALS: ");
 
         for(Animal animal : animals){
-            System.out.println("\n" + animal.getClass().getSimpleName() + ": \t\t" + animal.getName());
+            System.out.print("\n" + animal.getClass().getSimpleName() + ": \t\t" + animal.getName());
+            if(animal.isSick) System.out.println(" (needs to see veterinary)");
             System.out.println("Gender: \t"  + animal.getGender());
             System.out.println("Age: \t\t" + animal.getAge());
             System.out.println("Health: \t" + animal.getHealth());
