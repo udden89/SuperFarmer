@@ -1,0 +1,18 @@
+package Animals;
+
+public class Eagle extends Animal{
+
+    public static String animalTypePlural = "EAGLES";
+    public static String animalTypeSingular = "EAGLE";
+
+    private static boolean eatsMeat = true;
+    private static boolean eatsFish = true;
+    private static boolean eatsSalad = false;
+
+    private static int kiloOfFoodNeededFor10to30PercentHealth = 1;
+    private static int maxNewbornBabies = 3;
+
+    public Eagle(String gender, String name) {
+        super(name, gender, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, kiloOfFoodNeededFor10to30PercentHealth, maxNewbornBabies);
+    }
+}
