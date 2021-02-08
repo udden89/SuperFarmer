@@ -2,8 +2,8 @@ package Animals;
 
 public class BabyJedi extends Animal{
 
-    public static String animalTypePlural = "Baby Jedi's";
-    public static String animalTypeSingular = "Baby Jedi";
+    public static String animalTypePlural = "BABY JEDI'S";
+    public static String animalTypeSingular = "BABY JEDI";
 
     private static boolean eatsMeat = false;
     private static boolean eatsFish = true;

@@ -1,8 +1,6 @@
 package Store;
 
-import Animals.Animal;
-import Animals.AnimalCAM;
-import Animals.Wolf;
+import Animals.*;
 import Game.Game;
 import Game.IOFunctions;
 import Player.Player;
@@ -264,16 +262,16 @@ public class Store {
                 player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
             else if(animalType.equalsIgnoreCase("PANDA")){
-                player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
+                player.animals().add(new Panda(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
             else if(animalType.equalsIgnoreCase("BEAR")){
-                player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
+                player.animals().add(new Bear(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
             else if(animalType.equalsIgnoreCase("EAGLE")){
-                player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
+                player.animals().add(new Eagle(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
             else if(animalType.equalsIgnoreCase("BABY JEDI")){
-                player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
+                player.animals().add(new BabyJedi(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }
         }
     }

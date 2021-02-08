@@ -107,27 +107,8 @@ public class AnimalCAM {
 
     }
 
-    public static int findIndexOfSelectedAnimal(ArrayList<Animal> animals, int playersChoice){
-
-        //Loop for finding the index of selected animal.
-        try{
-            for(int i = 0; i <animals.size(); i++){
-            if(animals.get(playersChoice-1).getName().equals(animals.get(i).getName())){
-                return i;
-            }
-        }
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        return -1;
-    }
-
     //Decrease health, increase age and making animal sick.
     public static void decreaseAnimalHealthAndAgePerRound(){
-
-        //Player player, ArrayList<Animal> animals
-
 
         for (int i = 0; i < Game.players.size(); i++){
 
@@ -163,7 +144,7 @@ public class AnimalCAM {
                     continue;
                 }
 
-                if(!animal.isSick && sickRandom <= 100){
+                if(!animal.isSick && sickRandom <= 20){
                     animal.setSick(true);
                     System.out.println(player.getPlayerName() + ", your " + animal.getName() + " has become ill and needs to see a veterinary"
                             + " (otherwise it will die under the next 1-3 rounds).");
