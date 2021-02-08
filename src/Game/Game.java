@@ -68,8 +68,8 @@ public class Game {
             System.out.println(IOFunctions.line);
             System.out.println("\nHow many rounds do you want to play (5-30)?");
             while (gameRounds < 5 || gameRounds > 30) {
-                gameRounds = 30;    //TODO remove this when not debugging and activate the line below
-                //gameRounds = IOFunctions.convertStringToInt();
+                //gameRounds = 30;    //TODO remove this when not debugging and activate the line below
+                gameRounds = IOFunctions.convertStringToInt();
                 if (gameRounds < 5 || gameRounds > 30) {
                     System.out.println("Please enter rounds between 5-30");
                 }
@@ -108,6 +108,9 @@ public class Game {
                 gameRounds--;
             }
         }
+
+        GameCAM.winner();
+
     }
 
     public boolean actionOfPlayer(Player player){

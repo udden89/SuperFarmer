@@ -39,11 +39,6 @@ public class StoreCAM {
 
     }
 
-    public static void printSellMenu(ArrayList<Animal> animals){
-
-
-
-    }
 
     public static boolean askEnoughWithGold(int playerGold, int price){
 

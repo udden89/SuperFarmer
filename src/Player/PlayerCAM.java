@@ -19,6 +19,10 @@ public class PlayerCAM {
 
     }
 
+    public static int totalKgFood(Player player){
+        return player.getStackOfKiloFish() + player.getStackOfKiloMeat() + player.getStackOfKiloSalad();
+    }
+
     public static void printAPlayersAnimals(ArrayList<Animal> animals){
 
         System.out.println(IOFunctions.line);
@@ -26,7 +30,11 @@ public class PlayerCAM {
 
         for(Animal animal : animals){
             System.out.print("\n" + animal.getClass().getSimpleName() + ": \t\t" + animal.getName());
-            if(animal.isSick) System.out.println(" (needs to see veterinary)");
+            if(animal.isSick) {
+                System.out.println(" (needs to see veterinary)");
+            }else{
+                System.out.println("\t");
+            }
             System.out.println("Gender: \t"  + animal.getGender());
             System.out.println("Age: \t\t" + animal.getAge());
             System.out.println("Health: \t" + animal.getHealth());

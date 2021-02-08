@@ -82,18 +82,19 @@ public class Breeding {
 
         while(true){
 
-            System.out.println("1");
-
             for (Animal animal : animals) {
 
                 //Filter of what to not add into suitable partners.
                 if(firstAnimal.getName().equalsIgnoreCase(animal.getName())
                         || firstAnimal.getGender().equalsIgnoreCase(animal.getGender())
-                        || !firstAnimal.getAnimalType().equalsIgnoreCase(secondAnimal.getAnimalType())){
-                    System.out.println("2");
+                        || (!firstAnimal.getAnimalType().equalsIgnoreCase(secondAnimal.getAnimalType()))){
                     continue;
                 }
                 tempAnimalList.add(animal);
+            }
+
+            if(tempAnimalList.isEmpty()){
+                System.out.println("Sorry, no available partners!");
             }
 
             //Prints all suitable partners.

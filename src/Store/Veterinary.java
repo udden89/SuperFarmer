@@ -31,6 +31,7 @@ public class Veterinary {
         for (Animal animal : animals) {
             if(animal.isSick) {
                 sickAnimals.add(animal);
+                player.setSickAnimals(player.getSickAnimals()+1);
             }
         }
 
@@ -76,13 +77,13 @@ public class Veterinary {
                     animal.isSick = false;
                     player.setGold(player.getGold()-curePrices.get(animal.animalType));
                     System.out.println("You have successfully cured your " + animal.getName() + "!");
-                    return true;
+                    player.setSickAnimals(player.getSickAnimals()-1);
                 }
                 else{
                     player.setGold(player.getGold()-curePrices.get(animal.animalType));
                     System.out.println("Sorry, the veterinary tried her best!");
-                    return true;
                 }
+                return true;
 
             }else{ //If not enough with gold.
                 return false;
