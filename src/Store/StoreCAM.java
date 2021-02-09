@@ -42,7 +42,7 @@ public class StoreCAM {
 
     public static boolean askEnoughWithGold(int playerGold, int price){
 
-        //Error handler for "java.lang.ArithmeticException" when calculating max.
+        //Error handler for "java.lang.ArithmeticException" when calculating max at line 50.
         if(price == 0){
             return false;
         }

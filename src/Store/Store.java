@@ -257,7 +257,6 @@ public class Store {
 
         for(int i = 0; i < quantity; i++){
 
-
             if(animalType.equalsIgnoreCase("WOLF")){
                 player.animals().add(new Wolf(AnimalCAM.genderOfNewAnimal(animalType, randomGender), AnimalCAM.inputNameOfNewAnimal(animalType)));
             }

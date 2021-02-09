@@ -40,9 +40,9 @@ public class GameCAM extends Game implements Serializable {
 
         for(Player player : players){
 
-            int gold = player.getGold();
             ArrayList<Animal> animals = player.animals;
 
+            //Sells all animals and add gold to player.
             for(int i = 0; i < animals.size(); i++){
                 Animal animal = animals.get(i);
                 int value = (int)((double)animals.get(i).getHealth()/100)*Store.animalPrices.get(animal.animalType);
@@ -51,9 +51,9 @@ public class GameCAM extends Game implements Serializable {
                 i--;
 
             }
-
         }
 
+        //Sorts the players by their gold and puts the players in a descending winner list.
         for(int i = players.size()-1; i > 0; i--){
             if(players.get(i).getGold() > players.get(0).getGold()){
                 Player tempPlayer = players.get(i);
