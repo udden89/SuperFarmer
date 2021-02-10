@@ -7,13 +7,15 @@ import Game.IOFunctions;
 import java.util.ArrayList;
 
 //CAM Stands for calculations and menus
-public class PlayerCAM {
+public class PlayerHelper {
 
     public static void printPlayerInfo(Player player){
         System.out.println(IOFunctions.line);
         System.out.println(player.getPlayerName() + ", you have in your farm: \n");
         System.out.println(player.getGold() + " gold");
         printAPlayersAnimals(player.animals());
+
+
 
         //Print food as well.
 

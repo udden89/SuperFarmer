@@ -1,7 +1,6 @@
 package Store;
 
 import Animals.Animal;
-import Animals.AnimalCAM;
 import Game.IOFunctions;
 import Player.Player;
 
@@ -69,7 +68,7 @@ public class Veterinary {
         if(IOFunctions.areYouSure("Try to cure your animal (50% chance of success)?")){
 
             //Checks if afforded with veterinary
-            if(StoreCAM.askEnoughWithGold(player.getGold(), curePrices.get(animal.animalType))) {
+            if(StoreHelper.askEnoughWithGold(player.getGold(), curePrices.get(animal.animalType))) {
 
                 int random = IOFunctions.randomNumber(1,100);
                 System.out.println(random);

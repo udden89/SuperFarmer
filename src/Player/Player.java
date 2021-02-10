@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Player {
 
     private String playerName;
-    private int gold = 5000;
+    private int gold = 10000;
 
     private int stackOfKiloFish = 0;
     private int stackOfKiloMeat = 0;

@@ -1,5 +1,5 @@
 package Food;
 
 //CAM Stands for calculations and menus
-public class FoodCAM {
+public class FoodHelper {
 }

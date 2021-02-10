@@ -1,7 +1,7 @@
 package Player;
 
 import Animals.Animal;
-import Animals.AnimalCAM;
+import Animals.AnimalHelper;
 import Game.IOFunctions;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class Feeding {
 
         while(true){
 
-            AnimalCAM.printAnimalToChoose(animals,"Feeding animals", "feed");
+            AnimalHelper.printAnimalToChoose(animals,"Feeding animals", "feed");
 
             int choice = IOFunctions.convertStringToInt();
             if (choice == 0){

@@ -9,10 +9,9 @@ public class Wolf extends Animal{
     private static boolean eatsFish = true;
     private static boolean eatsSalad = false;
 
-    private static int kiloOfFoodNeededFor10to30PercentHealth = 1;
     private static int maxNewbornBabies = 5;
 
     public Wolf(String gender, String name) {
-        super(name, gender, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, kiloOfFoodNeededFor10to30PercentHealth, maxNewbornBabies);
+        super(name, gender, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
     }
 }

@@ -14,10 +14,10 @@ public class Breeding {
 
             try {
 
-                AnimalCAM.printAnimalToChoose(animals, "Breeding", "breed");
+                AnimalHelper.printAnimalToChoose(animals, "Breeding", "breed");
 
-                //Choose a first animal to breed and return its index.
-                int index = IOFunctions.convertStringToInt(0,animals.size())-1;
+                //Choose a  animal to breed and return its index.
+                int index = IOFunctions.convertStringToInt(0,animals.size()-1);
 
                 //Choose a second suitable animal to the first picked. Returns true if a player chose to breed.
                 if (breedingAndAddIfBabies(player, animals.get(index), chooseBreedingPartner(animals.get(index), animals, animals.get(index)))) {
@@ -65,7 +65,11 @@ public class Breeding {
         if(chanceOfNewBaby > 50){
             System.out.println("Congratz!! You have successfully breaded " + howManyBabies + " new baby " + selectedAnimal.animalTypePlural);
             System.out.println("Rolled: " + chanceOfNewBaby + " (50+ needed");
-            Store.createAnimalToPlayersAnimalList(player, howManyBabies, selectedAnimal.getAnimalType(),true);
+
+            for (int i = 0; i < howManyBabies; i++) {
+                Store.createAnimalToPlayersAnimalList(player, selectedAnimal.getAnimalType(),true);
+            }
+
         }else {
             System.out.println("Sorry, there were no new cute babies...");
             System.out.println("Rolled: " + Math.floor(chanceOfNewBaby) + " (50+ needed)");

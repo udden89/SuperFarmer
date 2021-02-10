@@ -1,11 +1,14 @@
 package Game;
-import Animals.AnimalCAM;
+import Animals.Animal;
+import Animals.AnimalHelper;
 import Animals.Breeding;
 import Player.*;
 import Store.Store;
 import Store.Veterinary;
 
 import java.util.ArrayList;
+
+import static Game.IOFunctions.printSomethingWithThreadSleep;
 
 public class Game {
 
@@ -20,7 +23,8 @@ public class Game {
 
     public Game() {
         settingUpTheGame();
-        Store store = new Store();
+        Store.addAllItemsToStore();
+        Animal.addAllAnimalTypes();
         gameLoop();
     }
 
@@ -29,26 +33,26 @@ public class Game {
 
         if(!skipIfSaved){
 
-            System.out.println(IOFunctions.line);
+            IOFunctions.printLine();
             System.out.println("Welcome to Farm of the year game!");
 
 
             //The rules of the game
-            System.out.println(IOFunctions.line);
-            System.out.println("\nThe rules are: \n" +
+            IOFunctions.printLine();
+            System.out.println("The rules are: \n" +
                     "Buy animals, breed them and sell them. \n" +
                     "The player with most money at the end wins the game");
 
 
             //Decides how many players.
-            System.out.println(IOFunctions.line);
-            System.out.println("\nHow many players (1-4)?");
+            IOFunctions.printLine();
+            System.out.println("How many players (1-4)?");
             while (howManyPlayers < 1 || howManyPlayers > 4) {
                 howManyPlayers = IOFunctions.convertStringToInt();
                 if (howManyPlayers < 1 || howManyPlayers > 4) {
                     System.out.println("Please enter a player count between 1-4");
                 }
-                System.out.println(IOFunctions.line);
+                IOFunctions.printLine();
                 System.out.println("You have chosen: " + howManyPlayers + " players");
             }
 
@@ -65,7 +69,7 @@ public class Game {
 
 
             //Decides how many rounds in game.
-            System.out.println(IOFunctions.line);
+            IOFunctions.printLine();
             System.out.println("\nHow many rounds do you want to play (5-30)?");
             while (gameRounds < 5 || gameRounds > 30) {
                 //gameRounds = 30;    //TODO remove this when not debugging and activate the line below
@@ -77,18 +81,21 @@ public class Game {
 
 
             //Printing all the players and the start money
-            System.out.println(IOFunctions.line);
-            System.out.print("You have chosen: " + gameRounds + " rounds");
-            System.out.println("\nAnd our players are: ");
+            IOFunctions.printLine();
+            System.out.println("You have chosen: " + gameRounds + " rounds");
+            System.out.println("And our players are: \n");
             for (Player player : players) {
                 System.out.println(player.getPlayerName() + " with " + player.getGold() + " gold");
             }
 
-            System.out.println(IOFunctions.line);
-            System.out.println("GOOD LUCK!!!!");
+            IOFunctions.printLine();
+            printSomethingWithThreadSleep("G O O D  L U C K !!", 50);
+            IOFunctions.printLine();
 
         }
     }
+
+
 
     private void gameLoop(){
 
@@ -102,14 +109,14 @@ public class Game {
                     }
                 }
 
-                AnimalCAM.decreaseAnimalHealthAndAgePerRound();
-                PlayerCAM.checkIfPlayerLost();
+                AnimalHelper.decreaseAnimalHealthAndAgePerRound();
+                PlayerHelper.checkIfPlayerLost();
 
                 gameRounds--;
             }
         }
 
-        GameCAM.winner();
+        GameHelper.runEndgameProcess();
 
     }
 
@@ -117,19 +124,19 @@ public class Game {
 
         while(true){
 
-            GameCAM.printMainMenu(player);
+            GameHelper.printMainMenu(player);
             int action = IOFunctions.convertStringToInt();
 
             switch (action){
 
                 case 1:
-                    if(Store.buyAnimal(player)){
+                    if(Store.buyAnimal(player, false)){
                         return true;
                     }
                     break;
 
                 case 2:
-                    if(Store.buyFood(player)){
+                    if(Store.buyFood(player, false)){
                         return true;
                     }
                     break;
@@ -159,12 +166,12 @@ public class Game {
                     break;
 
                 case 7:
-                    PlayerCAM.printPlayerInfo(player);
+                    PlayerHelper.printPlayerInfo(player);
                     //InputAndOutputFunctions.pressEnterToContinue();
                     break;
 
                 default:
-                    System.out.println("Printed from actionOfPlayer default");
+
 
             }
         }

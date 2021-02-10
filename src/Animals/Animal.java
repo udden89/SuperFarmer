@@ -15,7 +15,6 @@ public abstract class Animal extends Object {
     private int deathAtAge = (int) (Math.random() * (4))+7; //Dead between age of 7-10
     private int health = 100;
     private int maxHealth = 100;
-    private int kiloOfFoodNeededFor10to30PercentHealth;
 
     private int maxNewbornBabies;
 
@@ -26,10 +25,11 @@ public abstract class Animal extends Object {
     public boolean isSick = false;
     public int roundsBeforeDeathIfSick = (int) (Math.random() * 3) + 1;
 
+    public static ArrayList<String> typeOfAnimals = new ArrayList<>();
 
 
     Animal(String name, String gender, boolean eatsFish, boolean eatsMeat, boolean eatsSalad,
-           String animalType, String animalTypePlural, int kiloOfFoodNeededFor10to30PercentHealth, int maxNewbornBabies) {
+           String animalType, String animalTypePlural, int maxNewbornBabies) {
         this.name = name;
         this.gender = gender;
         this.eatsFish = eatsFish;
@@ -37,12 +37,18 @@ public abstract class Animal extends Object {
         this.eatsSalad = eatsSalad;
         this.animalType = animalType;
         this.animalTypePlural = animalTypePlural;
-        this.kiloOfFoodNeededFor10to30PercentHealth = kiloOfFoodNeededFor10to30PercentHealth;
         this.maxNewbornBabies = maxNewbornBabies;
 
     }
 
+    public static void addAllAnimalTypes(){
+        typeOfAnimals.add("WOLF");
+        typeOfAnimals.add("PANDA");
+        typeOfAnimals.add("BEAR");
+        typeOfAnimals.add("EAGLE");
+        typeOfAnimals.add("BABY JEDI");
 
+    }
 
 
     //<editor-fold desc="Getters & Setters">
@@ -60,9 +66,6 @@ public abstract class Animal extends Object {
     }
     public int getMaxHealth() {
         return maxHealth;
-    }
-    public int getKiloOfFoodNeededFor10to30PercentHealth() {
-        return kiloOfFoodNeededFor10to30PercentHealth;
     }
     public String getName() {
         return name;

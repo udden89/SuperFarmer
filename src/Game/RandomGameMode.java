@@ -52,7 +52,7 @@ public class RandomGameMode {
             alreadyAdded = true;
         }
 
-        int index = ((int) (Math.random() * randomNames.size()))+1;
+        int index = ((int) (Math.random() * randomNames.size()));
         String name = randomNames.get(index);
         randomNames.remove(index);
         return name;

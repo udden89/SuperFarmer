@@ -12,6 +12,29 @@ public class IOFunctions {
     public static String wrongInput = "Incorrect input, please enter a valid key";
     public static String notInStock = "Sorry, you don't have any in stock!";
 
+    public static void printLine(){
+        String star = "¤";
+        System.out.println();
+        System.out.println();
+        System.out.println(star.repeat(50));
+        System.out.println();
+        System.out.println();
+
+    }
+
+    public static void printSomethingWithThreadSleep(String whatToPrint, int forHowLongInMS){
+
+        try{
+            for(int i = 0; i < whatToPrint.length(); i++){
+                System.out.print(whatToPrint.charAt(i));
+                Thread.sleep(forHowLongInMS);
+            }
+        }catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+    }
+
 
     public static int convertStringToInt(int min, int max) {
 
@@ -33,7 +56,7 @@ public class IOFunctions {
         }
     }
 
-    //Overload
+    //Overload method
     public static int convertStringToInt() {
 
         Scanner scan = new Scanner(System.in);
@@ -60,18 +83,8 @@ public class IOFunctions {
         }
     }
 
-    public static void pressEnterToContinue(){
-        System.out.println(line);
-        System.out.println("Press ENTER to continue...");
-        try{
-            System.in.read();
-        }catch (Exception e){
-
-        }
-    }
-
     public static boolean areYouSure(String areYouSureYouWantTo){
-        System.out.println(areYouSureYouWantTo + " This will end your turn.");
+        System.out.println(areYouSureYouWantTo);
         System.out.println("[Y] - Yes");
         System.out.println("[N] - No");
 
@@ -94,4 +107,6 @@ public class IOFunctions {
         return (int)(Math.random() * max) + min;
 
     }
+
+
 }
