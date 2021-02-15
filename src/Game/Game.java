@@ -152,7 +152,7 @@ public class Game {
                     break;
 
                 case 5:
-                    if(Store.sellAnimal(player, player.animals())){
+                    if(Store.sellAnimal(player)){
                         return true;
                     }
                     break;

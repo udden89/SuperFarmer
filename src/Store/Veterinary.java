@@ -68,7 +68,7 @@ public class Veterinary {
         if(IOFunctions.printAndAskIfUserAreSure("Try to cure your animal (50% chance of success)?")){
 
             //Checks if afforded with veterinary
-            if(StoreHelper.askEnoughWithGold(player.getGold(), curePrices.get(animal.animalType))) {
+            if(Store.checksIfPlayerHasEnoughGold(player, curePrices.get(animal.animalType))) {
 
                 int random = IOFunctions.randomNumber(1,100);
                 System.out.println(random);
