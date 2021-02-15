@@ -57,7 +57,7 @@ public class Breeding {
                 +  "% of getting up to " +
                 selectedAnimal.getMaxNewbornBabies() + " babies.");
 
-        if(!IOFunctions.areYouSure("continue?")){
+        if(!IOFunctions.printAndAskIfUserAreSure("continue?")){
             return false;
         }
 
@@ -67,7 +67,7 @@ public class Breeding {
             System.out.println("Rolled: " + chanceOfNewBaby + " (50+ needed");
 
             for (int i = 0; i < howManyBabies; i++) {
-                Store.createAnimalToPlayersAnimalList(player, selectedAnimal.getAnimalType(),true);
+                Store.createAnAnimal(player, selectedAnimal.getAnimalType(),true);
             }
 
         }else {

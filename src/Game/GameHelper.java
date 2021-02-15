@@ -18,7 +18,7 @@ public class GameHelper extends Game implements Serializable {
 
         System.out.println(star.repeat(50)+"\n");
         System.out.print(mid);
-        IOFunctions.printSomethingWithThreadSleep(player.getPlayerName(), 250);
+        IOFunctions.printSomethingWithThreadSleep(player.getPlayerName(), 50);
         System.out.println("");
         System.out.println("\t" + "Round: " + gameRounds);
         System.out.println("\tGold: "+ player.getGold() + " \t\t\tAnimals owned: " + player.animals.size());

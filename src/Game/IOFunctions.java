@@ -1,7 +1,7 @@
 package Game;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import Player.Player;
+
 import java.util.Scanner;
 
 //Input & output functions
@@ -83,7 +83,7 @@ public class IOFunctions {
         }
     }
 
-    public static boolean areYouSure(String areYouSureYouWantTo){
+    public static boolean printAndAskIfUserAreSure(String areYouSureYouWantTo){
         System.out.println(areYouSureYouWantTo);
         System.out.println("[Y] - Yes");
         System.out.println("[N] - No");
@@ -96,7 +96,7 @@ public class IOFunctions {
         else if(choice.equalsIgnoreCase("N") || choice.equalsIgnoreCase("0")) {
             return false;
         }
-        return areYouSure(areYouSureYouWantTo);
+        return printAndAskIfUserAreSure(areYouSureYouWantTo);
     }
 
     public static int randomNumber(int minNumber, int maxNumber){

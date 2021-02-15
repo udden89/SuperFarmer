@@ -73,7 +73,7 @@ public class Feeding {
                     if(player.getStackOfKiloFish() >= kilo){
                         System.out.println("How many kilo of fish do you want to use?");
                         kilo = IOFunctions.convertStringToInt();
-                        if(!IOFunctions.areYouSure(" use these fish?")){
+                        if(!IOFunctions.printAndAskIfUserAreSure(" use these fish?")){
                             return false;
                         }
                         restoreHealth(animals.get(index), kilo);

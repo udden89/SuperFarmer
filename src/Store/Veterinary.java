@@ -65,7 +65,7 @@ public class Veterinary {
         Animal animal = sickAnimals.get(index);
 
         System.out.println(IOFunctions.line);
-        if(IOFunctions.areYouSure("Try to cure your animal (50% chance of success)?")){
+        if(IOFunctions.printAndAskIfUserAreSure("Try to cure your animal (50% chance of success)?")){
 
             //Checks if afforded with veterinary
             if(StoreHelper.askEnoughWithGold(player.getGold(), curePrices.get(animal.animalType))) {

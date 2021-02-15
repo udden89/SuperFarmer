@@ -1,5 +1,7 @@
 package Animals;
 
+import Game.Audio;
+
 import java.util.ArrayList;
 
 public abstract class Animal extends Object {
@@ -39,8 +41,11 @@ public abstract class Animal extends Object {
         this.animalTypePlural = animalTypePlural;
         this.maxNewbornBabies = maxNewbornBabies;
 
+        playSoundEffectOfAnimal(animalType);
+
     }
 
+    //Adds all avaiable animals to a String list
     public static void addAllAnimalTypes(){
         typeOfAnimals.add("WOLF");
         typeOfAnimals.add("PANDA");
@@ -48,6 +53,13 @@ public abstract class Animal extends Object {
         typeOfAnimals.add("EAGLE");
         typeOfAnimals.add("BABY JEDI");
 
+    }
+
+    //Everytime a new animal creates play it's sound
+    private static void playSoundEffectOfAnimal(String animalType) {
+        String filePath = "Sound effects/" + animalType + ".wav";
+        Audio audio = new Audio();
+        audio.playMusic(filePath);
     }
 
 

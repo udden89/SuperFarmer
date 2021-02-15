@@ -89,13 +89,11 @@ public class Game {
             }
 
             IOFunctions.printLine();
-            printSomethingWithThreadSleep("G O O D  L U C K !!", 50);
+            printSomethingWithThreadSleep("G O O D  L U C K !!", 25);
             IOFunctions.printLine();
 
         }
     }
-
-
 
     private void gameLoop(){
 
@@ -120,7 +118,7 @@ public class Game {
 
     }
 
-    public boolean actionOfPlayer(Player player){
+    public static boolean actionOfPlayer(Player player){
 
         while(true){
 
@@ -130,13 +128,13 @@ public class Game {
             switch (action){
 
                 case 1:
-                    if(Store.buyAnimal(player, false)){
+                    if(Store.startProcessOfBuyingAnimalFromStore(player)){
                         return true;
                     }
                     break;
 
                 case 2:
-                    if(Store.buyFood(player, false)){
+                    if(Store.startProcessOfBuyingFoodFromStore(player)){
                         return true;
                     }
                     break;

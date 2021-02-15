@@ -33,20 +33,19 @@ public class StoreHelper {
 
     }
 
-    public static void playerWantToShopAgain(Player player, String whatToBuy){
-        if(IOFunctions.areYouSure("Do you want to buy again? Otherwise will this end your turn")){
-           switch (whatToBuy){
-               case "ANIMAL" -> Store.buyAnimal(player, true);
-               case "FOOD" -> Store.buyFood(player, true);
-           }
-
-        }
-    }
-
+//    public static void playerWantToShopAgain(Player player, String whatToBuy){
+//        if(IOFunctions.printAndAskIfUserAreSure("Do you want to buy again? Otherwise will this end your turn")){
+//           switch (whatToBuy){
+//               case "ANIMAL" -> Store.buyAnimal(player, true);
+//               case "FOOD" -> Store.buyFood(player, true);
+//           }
+//
+//        }
+//    }
 
     public static boolean askEnoughWithGold(int playerGold, int price){
 
-        //Error handler for "java.lang.ArithmeticException" when calculating max at line 50.
+        //Error handler for "java.lang.ArithmeticException" when calculating max at line 53.
         if(price == 0){
             return false;
         }

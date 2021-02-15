@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class AnimalHelper {
 
 
-    public static String genderOfNewAnimal(String animalType, boolean random) {
+    public static String setGenderOfNewAnimal(String animalType, boolean random) {
 
         if (random){
             int number = (int) (Math.random() * 10) + 1;

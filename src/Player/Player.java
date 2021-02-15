@@ -16,7 +16,6 @@ public class Player {
 
     public ArrayList<Animal> animals = new ArrayList<>();
 
-
     public Player(String playerName){
         this.playerName = playerName;
     }
