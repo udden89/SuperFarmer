@@ -1,6 +1,4 @@
-package Game;
-
-import Player.Player;
+package game;
 
 import java.util.Scanner;
 

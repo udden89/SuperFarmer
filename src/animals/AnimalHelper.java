@@ -1,9 +1,9 @@
-package Animals;
+package animals;
 
-import Game.Game;
-import Game.IOFunctions;
-import Game.RandomGameMode;
-import Player.Player;
+import game.Game;
+import game.IOFunctions;
+import game.RandomGameMode;
+import player.Player;
 
 import java.util.ArrayList;
 
@@ -85,9 +85,9 @@ public class AnimalHelper {
 
     public static void printAnimalToChoose(ArrayList<Animal> animals, String menuName , String verb){
 
-        System.out.println(IOFunctions.line);
+        IOFunctions.printLine();
         System.out.println(menuName + "... ");
-        System.out.println(IOFunctions.line + "\n");
+        IOFunctions.printLine();
 
         int number = 1;
 

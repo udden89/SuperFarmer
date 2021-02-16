@@ -1,14 +1,14 @@
-package Game;
-import Animals.Animal;
-import Animals.AnimalHelper;
-import Animals.Breeding;
-import Player.*;
-import Store.Store;
-import Store.Veterinary;
+package game;
+import animals.Animal;
+import animals.AnimalHelper;
+import animals.Breeding;
+import player.*;
+import store.Store;
+import store.Veterinary;
 
 import java.util.ArrayList;
 
-import static Game.IOFunctions.printSomethingWithThreadSleep;
+import static game.IOFunctions.printSomethingWithThreadSleep;
 
 public class Game {
 
@@ -146,7 +146,7 @@ public class Game {
                     break;
 
                 case 4:
-                    if(Breeding.breedAnimalMenu(player, player.animals())){
+                    if(Breeding.startProcessOfBreedingTwoAnimals(player)){
                         return true;
                     }
                     break;
@@ -158,7 +158,7 @@ public class Game {
                     break;
 
                 case 6:
-                    if(Veterinary.cureAnimal(player, player.animals)){
+                    if(Veterinary.startProcessOfCuringAnimal(player, player.animals)){
                         return true;
                     }
                     break;

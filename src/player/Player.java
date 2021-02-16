@@ -1,6 +1,6 @@
-package Player;
+package player;
 
-import Animals.Animal;
+import animals.Animal;
 import java.util.ArrayList;
 
 public class Player {

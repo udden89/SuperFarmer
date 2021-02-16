@@ -1,6 +1,6 @@
-package Animals;
+package animals;
 
-import Game.Audio;
+import game.Audio;
 
 import java.util.ArrayList;
 

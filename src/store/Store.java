@@ -1,9 +1,9 @@
-package Store;
+package store;
 
-import Animals.*;
-import Game.*;
-import Game.IOFunctions;
-import Player.Player;
+import animals.*;
+import game.*;
+import game.IOFunctions;
+import player.Player;
 
 import java.util.HashMap;
 
@@ -48,7 +48,9 @@ public class Store {
 
         }
 
-        if(IOFunctions.printAndAskIfUserAreSure("Do you want to continue shopping animals? Otherwise your turn will end")){
+        if(IOFunctions.printAndAskIfUserAreSure(
+                "Do you want to continue shopping animals? Otherwise your turn will end")){
+
             GameHelper.printMainMenu(player);
             startProcessOfBuyingAnimalFromStore(player);
         }
@@ -92,7 +94,8 @@ public class Store {
                 System.out.println(IOFunctions.wrongInput);
         }
 
-        if(IOFunctions.printAndAskIfUserAreSure("Do you want to continue shopping food? Otherwise your turn will end")){
+        if(IOFunctions.printAndAskIfUserAreSure(
+                "Do you want to continue shopping food? Otherwise your turn will end")){
             GameHelper.printMainMenu(player);
             startProcessOfBuyingFoodFromStore(player);
         }
@@ -271,7 +274,8 @@ public class Store {
         Player playerToSellTo = Game.players.get(IOFunctions.convertStringToInt( 1, Game.players.size()));
 
         boolean areYouSure;
-        areYouSure = IOFunctions.printAndAskIfUserAreSure("Do you both agree on this transaction of " + animalToSell.getName()+ "?");
+        areYouSure = IOFunctions.printAndAskIfUserAreSure(
+                "Do you both agree on this transaction of " + animalToSell.getName()+ "?");
 
         double sellPrice = ((double)animalToSell.getHealth()/100)* storePrices.get(animalToSell.animalType);
         if(areYouSure) {
@@ -296,7 +300,8 @@ public class Store {
         double sellPrice = ((double)animalToSell.getHealth()/100)* storePrices.get(animalToSell.animalType);
 
         boolean areYouSure;
-        areYouSure = IOFunctions.printAndAskIfUserAreSure("Are you sure you want to sell " + animalToSell.getName()+ "? This will end your turn");
+        areYouSure = IOFunctions.printAndAskIfUserAreSure(
+                "Are you sure you want to sell " + animalToSell.getName()+ "? This will end your turn");
 
         if(areYouSure) {
             player.setGold((int) (player.getGold() + sellPrice));

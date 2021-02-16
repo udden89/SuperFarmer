@@ -1,8 +1,8 @@
-package Game;
+package game;
 
-import Animals.Animal;
-import Player.*;
-import Store.Store;
+import animals.Animal;
+import player.*;
+import store.Store;
 
 
 import java.io.*;

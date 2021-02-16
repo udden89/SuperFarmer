@@ -1,3 +1,7 @@
+
+8 - 16/2 - 2021
+A lot of refactoring of code
+
 7/2 - 2021
 Added Veterinary class and its basic functions.
 
@@ -53,9 +57,9 @@ Added following functions:
 
 - Added some start attributes into Animal class
 - Added a start of an game loop.
-- Added some start attributes into Player class.
+- Added some start attributes into player class.
 - Added a few functions in InputAndOutputFunctions class.
-- Added "settingUpTheGame" function in Game class.
+- Added "settingUpTheGame" function in game class.
 - Added some more classes (CAM = calculations and menus)
 
 
@@ -76,10 +80,10 @@ Spelet kan prata engelska eller svenska i sitt användargränssnitt/med spelaren
 Skapa ett Java-program i form av en Command Line App (dvs. terminalen är användargränssnitt för in- och utmatning).
 Programmet ska vara ett spel som fungerar enligt nedanstående beskrivning.
 
-Klasser du ska ha med i din lösning: Game, Player, Store (som man köper och säljer djur till och köper mat ifrån), Animal (abstrakt), Food (abstrakt),
-samt minst 5 olika klasser av djur som alla ärver från Animal, samt minst 3 olika klasser av mat som alla ärver från Food.
+Klasser du ska ha med i din lösning: game, player, store (som man köper och säljer djur till och köper mat ifrån), Animal (abstrakt), food (abstrakt),
+samt minst 5 olika klasser av djur som alla ärver från Animal, samt minst 3 olika klasser av mat som alla ärver från food.
 Spelare ska ha namn och pengar som egenskaper/fält. Djur ska namn, kön och hälsa som egenskaper.
-Vilka egenskaper/fält (på Player, Animal och övriga klasser), samt metoder som behövs i övrigt får du fundera över och avgöra själv.
+Vilka egenskaper/fält (på player, Animal och övriga klasser), samt metoder som behövs i övrigt får du fundera över och avgöra själv.
 
 Spelgång och spelregler:
 När spelet startas anger man hur många rundor man vill spela (5-30), samt hur många spelare (1-4 som sitter vid samma dator som ska delta)
@@ -110,8 +114,8 @@ Den spelare som har mest pengar efter sista rundan vinner.
 
 Se till att varje spelare tydligt i början av varje runda få information om vilka djur hen äger, vilken mat hen äger och hur mycket pengar hen har, samt hur mycket djurs hälsa har försämrats sedan förra omgången.
 Man kan inte sälja mat.
-Man köper och säljer djur från en affären av klassen Store.
-Man köper mat från en affär av klassen Store (kan vara samma affär som den man köper och säljer från djur från).
+Man köper och säljer djur från en affären av klassen store.
+Man köper mat från en affär av klassen store (kan vara samma affär som den man köper och säljer från djur från).
 
 Djur kan bli sjuka (20% chans per djur och spelrunda). I så fall måste man betala veterinärkostnader för dem (olika pris för olika slags djur). Då är det 50% chans att de blir friska. Annars dör de.
 Man kan spara pågående spel till disk och fortsätta det senare. Flera spel kan sparas under olika filnamn. Användaren väljer filnamn.

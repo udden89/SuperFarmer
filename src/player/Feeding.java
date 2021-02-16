@@ -1,8 +1,8 @@
-package Player;
+package player;
 
-import Animals.Animal;
-import Animals.AnimalHelper;
-import Game.IOFunctions;
+import animals.Animal;
+import animals.AnimalHelper;
+import game.IOFunctions;
 
 import java.util.ArrayList;
 

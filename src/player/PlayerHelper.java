@@ -1,8 +1,8 @@
-package Player;
+package player;
 
-import Animals.Animal;
-import Game.Game;
-import Game.IOFunctions;
+import animals.Animal;
+import game.Game;
+import game.IOFunctions;
 
 import java.util.ArrayList;
 
@@ -15,9 +15,6 @@ public class PlayerHelper {
         System.out.println(player.getGold() + " gold");
         printAPlayersAnimals(player.animals());
 
-
-
-        //Print food as well.
 
     }
 
