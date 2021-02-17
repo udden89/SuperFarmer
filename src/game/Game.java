@@ -105,7 +105,7 @@ public class Game implements Serializable {
 
     }
 
-    private void gameLoop(){
+    public static void gameLoop(){
 
         while(gameRounds != 0){
 
@@ -180,6 +180,7 @@ public class Game implements Serializable {
 
                 case 9:
                     GameHelper.saveGame();
+                    break;
 
                 default:
 
@@ -189,9 +190,5 @@ public class Game implements Serializable {
     }
 
 
-
-    public void setGame(Game game){
-
-    }
 
 }

@@ -88,6 +88,8 @@ public class GameHelper extends Game implements Serializable {
 
     public static boolean saveGame(){
 
+        WhatToSave whatToSave = new WhatToSave();
+
         File file = new File("Saved games/");
         System.out.println("Enter name on saved game:");
         String savedGame = IOFunctions.inputString() + ".ser";
@@ -96,11 +98,11 @@ public class GameHelper extends Game implements Serializable {
             if(!file.exists()){
                 file.mkdir();
             }
-            Serializer.serialize("Saved games/" + savedGame, "game");
+            Serializer.serialize("Saved games/" + savedGame, whatToSave);
         }else {
             System.out.println("Already a saved game with that name.");
             if(IOFunctions.printAndAskIfUserAreSure("Do you want to overwrite the existing saved game?")){
-                Serializer.serialize("Saved games" + savedGame, "game" );
+                Serializer.serialize("Saved games" + savedGame, whatToSave );
             }
 
         }
@@ -108,15 +110,45 @@ public class GameHelper extends Game implements Serializable {
 
     }
 
-    public static boolean loadGame(){
+    public static void loadGame(){
 
         File[] savedGames = new File("Saved games").listFiles();
 
-        for(File gameFile : savedGames){
-            System.out.println(gameFile.getName());
+        printAllSavedGames(savedGames);
+        String fileName = "Saved games/" + chooseSavedGame(savedGames);
+
+        try{
+          WhatToSave whatToSave = (WhatToSave) Serializer.deserialize(fileName);
+          whatToSave.loadGame();
+          Game.gameLoop();
+
+        }catch (Exception error){
+            System.out.println("Error in loading your game");
         }
 
-        return true;
+    }
+
+    private static void printAllSavedGames(File[] savedGames){
+
+        int number = 1;
+        for(File gameFile : savedGames){
+            System.out.println("[" + number+ "] - "+  gameFile.getName().replace(".ser", ""));
+            number++;
+        }
+
+    }
+
+    private static String chooseSavedGame(File[] savedGames){
+
+        ArrayList<String> tempListOFSavedGames = new ArrayList<>();
+
+        for(File gameFile : savedGames){
+            tempListOFSavedGames.add(gameFile.getName());
+        }
+
+        System.out.println("Which game do you want to load?");
+        int choice = IOFunctions.convertStringToInt();
+        return tempListOFSavedGames.get(choice-1);
 
     }
 

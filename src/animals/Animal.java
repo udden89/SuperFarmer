@@ -2,9 +2,10 @@ package animals;
 
 import game.Audio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Animal extends Object {
+public abstract class Animal extends Object implements Serializable {
 
     //These variables are used in the text of the game.
     public String animalType;
@@ -45,7 +46,7 @@ public abstract class Animal extends Object {
 
     }
 
-    //Adds all avaiable animals to a String list
+    //Adds all available animals to a String list
     public static void addAllAnimalTypes(){
         typeOfAnimals.add("WOLF");
         typeOfAnimals.add("PANDA");

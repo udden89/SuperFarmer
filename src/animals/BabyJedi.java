@@ -1,6 +1,8 @@
 package animals;
 
-public class BabyJedi extends Animal{
+import java.io.Serializable;
+
+public class BabyJedi extends Animal implements Serializable {
 
     public static String animalTypePlural = "BABY JEDI'S";
     public static String animalTypeSingular = "BABY JEDI";
