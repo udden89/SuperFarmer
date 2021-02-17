@@ -12,6 +12,6 @@ public class Panda extends Animal{
     private static int maxNewbornBabies = 1;
 
     public Panda(String gender, String name) {
-        super(name, gender, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
+        super(gender, name, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
     }
 }

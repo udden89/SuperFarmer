@@ -12,6 +12,6 @@ public class BabyJedi extends Animal{
     private static int maxNewbornBabies = 1;
 
     public BabyJedi(String name, String gender) {
-        super(name, gender, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
+        super(gender, name, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
     }
 }

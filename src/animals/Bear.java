@@ -12,7 +12,7 @@ public class Bear extends Animal{
     private static int maxNewbornBabies = 1;
 
     public Bear(String gender, String name) {
-        super(name, gender, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
+        super(gender, name, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
     }
 
 }

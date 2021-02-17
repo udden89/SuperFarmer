@@ -12,6 +12,6 @@ public class Eagle extends Animal{
     private static int maxNewbornBabies = 3;
 
     public Eagle(String gender, String name) {
-        super(name, gender, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
+        super(gender, name, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
     }
 }

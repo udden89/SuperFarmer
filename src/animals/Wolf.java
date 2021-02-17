@@ -12,6 +12,6 @@ public class Wolf extends Animal{
     private static int maxNewbornBabies = 5;
 
     public Wolf(String gender, String name) {
-        super(name, gender, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
+        super(gender, name, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
     }
 }
