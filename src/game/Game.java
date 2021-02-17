@@ -6,11 +6,17 @@ import player.*;
 import store.Store;
 import store.Veterinary;
 
+import java.io.File;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import static game.IOFunctions.printSomethingWithThreadSleep;
 
-public class Game {
+public class Game implements Serializable {
+
 
     // All the players of the game
     public static ArrayList<Player> players = new ArrayList<>();
@@ -19,7 +25,6 @@ public class Game {
     public static int gameRounds;
     protected static int howManyPlayers;
 
-    private boolean skipIfSaved = false;
 
     public Game() {
         settingUpTheGame();
@@ -31,68 +36,73 @@ public class Game {
 
     private void settingUpTheGame() {
 
-        if(!skipIfSaved){
-
-            IOFunctions.printLine();
-            System.out.println("Welcome to Farm of the year game!");
+        IOFunctions.printLine();
+        System.out.println("Welcome to Farm of the year game!");
 
 
-            //The rules of the game
-            IOFunctions.printLine();
-            System.out.println("The rules are: \n" +
-                    "Buy animals, breed them and sell them. \n" +
-                    "The player with most money at the end wins the game");
+        //The rules of the game
+        IOFunctions.printLine();
+        System.out.println("The rules are: \n" +
+                "Buy animals, breed them and sell them. \n" +
+                "The player with most money at the end wins the game");
 
-
-            //Decides how many players.
-            IOFunctions.printLine();
-            System.out.println("How many players (1-4)?");
-            while (howManyPlayers < 1 || howManyPlayers > 4) {
-                howManyPlayers = IOFunctions.convertStringToInt();
-                if (howManyPlayers < 1 || howManyPlayers > 4) {
-                    System.out.println("Please enter a player count between 1-4");
-                }
-                IOFunctions.printLine();
-                System.out.println("You have chosen: " + howManyPlayers + " players");
-            }
-
-
-            //Sets the player names
-            for (int i = 1; i <= howManyPlayers; i++) {
-                System.out.println("Enter a name for player " + i + ": ");
-                String playerName = RandomGameMode.randomName(); //TODO remove this when not debugging and activate the line below
-                //String playerName = IOFunctions.inputString();
-                Player player = new Player(playerName);
-                players.add(player);
-                //players.add(Player.createNewPlayer(playerName));                          //
-            }
-
-
-            //Decides how many rounds in game.
-            IOFunctions.printLine();
-            System.out.println("\nHow many rounds do you want to play (5-30)?");
-            while (gameRounds < 5 || gameRounds > 30) {
-                //gameRounds = 30;    //TODO remove this when not debugging and activate the line below
-                gameRounds = IOFunctions.convertStringToInt();
-                if (gameRounds < 5 || gameRounds > 30) {
-                    System.out.println("Please enter rounds between 5-30");
-                }
-            }
-
-
-            //Printing all the players and the start money
-            IOFunctions.printLine();
-            System.out.println("You have chosen: " + gameRounds + " rounds");
-            System.out.println("And our players are: \n");
-            for (Player player : players) {
-                System.out.println(player.getPlayerName() + " with " + player.getGold() + " gold");
-            }
-
-            IOFunctions.printLine();
-            printSomethingWithThreadSleep("G O O D  L U C K !!", 25);
-            IOFunctions.printLine();
-
+        IOFunctions.printLine();
+        boolean choice = IOFunctions.printAndAskIfUserAreSure("Do you want to load a game? ");
+        if(choice){
+            GameHelper.loadGame();
         }
+
+
+
+        //Decides how many players.
+        IOFunctions.printLine();
+        System.out.println("How many players (1-4)?");
+        while (howManyPlayers < 1 || howManyPlayers > 4) {
+            howManyPlayers = IOFunctions.convertStringToInt();
+            if (howManyPlayers < 1 || howManyPlayers > 4) {
+                System.out.println("Please enter a player count between 1-4");
+            }
+            IOFunctions.printLine();
+            System.out.println("You have chosen: " + howManyPlayers + " players");
+        }
+
+
+        //Sets the player names
+        for (int i = 1; i <= howManyPlayers; i++) {
+            System.out.println("Enter a name for player " + i + ": ");
+            String playerName = RandomGameMode.randomName(); //TODO remove this when not debugging and activate the line below
+            //String playerName = IOFunctions.inputString();
+            Player player = new Player(playerName);
+            players.add(player);
+            //players.add(Player.createNewPlayer(playerName));                          //
+        }
+
+
+        //Decides how many rounds in game.
+        IOFunctions.printLine();
+        System.out.println("\nHow many rounds do you want to play (5-30)?");
+        while (gameRounds < 5 || gameRounds > 30) {
+            //gameRounds = 30;    //TODO remove this when not debugging and activate the line below
+            gameRounds = IOFunctions.convertStringToInt();
+            if (gameRounds < 5 || gameRounds > 30) {
+                System.out.println("Please enter rounds between 5-30");
+            }
+        }
+
+
+        //Printing all the players and the start money
+        IOFunctions.printLine();
+        System.out.println("You have chosen: " + gameRounds + " rounds");
+        System.out.println("And our players are: \n");
+        for (Player player : players) {
+            System.out.println(player.getPlayerName() + " with " + player.getGold() + " gold");
+        }
+
+        IOFunctions.printLine();
+        printSomethingWithThreadSleep("G O O D  L U C K !!", 25);
+        IOFunctions.printLine();
+
+
     }
 
     private void gameLoop(){
@@ -168,10 +178,20 @@ public class Game {
                     //InputAndOutputFunctions.pressEnterToContinue();
                     break;
 
+                case 9:
+                    GameHelper.saveGame();
+
                 default:
 
 
             }
         }
     }
+
+
+
+    public void setGame(Game game){
+
+    }
+
 }

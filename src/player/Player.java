@@ -1,9 +1,11 @@
 package player;
 
 import animals.Animal;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements Serializable {
 
     private String playerName;
     private int gold = 10000;

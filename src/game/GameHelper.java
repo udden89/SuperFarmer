@@ -6,10 +6,13 @@ import store.Store;
 
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 //CAM Stands for calculations and menus
 public class GameHelper extends Game implements Serializable {
+
 
     public static void printMainMenu(Player player){
 
@@ -81,6 +84,40 @@ public class GameHelper extends Game implements Serializable {
             System.out.println("The winner are:");
             System.out.println("[" + number + "] - " + players.get(i).getPlayerName() + "!!! Total gold: " + players.get(i).getGold());
         }
+    }
+
+    public static boolean saveGame(){
+
+        File file = new File("Saved games/");
+        System.out.println("Enter name on saved game:");
+        String savedGame = IOFunctions.inputString() + ".ser";
+
+        if(!Files.exists(Paths.get("Saved games/" + savedGame))){
+            if(!file.exists()){
+                file.mkdir();
+            }
+            Serializer.serialize("Saved games/" + savedGame, "game");
+        }else {
+            System.out.println("Already a saved game with that name.");
+            if(IOFunctions.printAndAskIfUserAreSure("Do you want to overwrite the existing saved game?")){
+                Serializer.serialize("Saved games" + savedGame, "game" );
+            }
+
+        }
+        return true;
+
+    }
+
+    public static boolean loadGame(){
+
+        File[] savedGames = new File("Saved games").listFiles();
+
+        for(File gameFile : savedGames){
+            System.out.println(gameFile.getName());
+        }
+
+        return true;
+
     }
 
 }
