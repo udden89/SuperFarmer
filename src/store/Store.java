@@ -314,8 +314,8 @@ public class Store {
         int counter = 1;
 
         //Prints all available players
-        for(int i = 0; i < tempPlayers.size(); i++){
-            System.out.println("[" + counter + "] - " + tempPlayers.get(i).getPlayerName());
+        for (Player tempPlayer : tempPlayers) {
+            System.out.println("[" + counter + "] - " + tempPlayer.getPlayerName());
             counter++;
         }
 

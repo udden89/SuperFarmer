@@ -5,9 +5,6 @@ import java.util.Scanner;
 //Input & output functions
 public class IOFunctions {
 
-
-    public static String line = "________________________________________";
-    public static String wrongInput = "Incorrect input, please enter a valid key";
     public static String notInStock = "Sorry, you don't have any in stock!";
 
     public static void printLine(){
