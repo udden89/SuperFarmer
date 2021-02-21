@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 public class Store {
 
-
     public static HashMap<String, Integer> storePrices = new HashMap<>();
 
     //Method to put items in the hashMap above at start of game
@@ -62,32 +61,32 @@ public class Store {
 
         printFoodMenu();
 
-        String choice = IOFunctions.inputString();
+        int choice = IOFunctions.convertStringToInt(0,3);
 
         switch (choice){
-            case "1": //FISH
+            case 1: //FISH
                 if(checksIfPlayerHasEnoughGold(player,"FISH")){
                     player.setStackOfKiloFish(player.getStackOfKiloFish()+1);
                     withdrawGoldFromPlayer(player,storePrices.get("FISH"));
                 }
                 break;
-            case "2": //MEAT
+            case 2: //MEAT
                 if(checksIfPlayerHasEnoughGold(player,"MEAT")){
                     player.setStackOfKiloMeat(player.getStackOfKiloMeat()+1);
                     withdrawGoldFromPlayer(player,storePrices.get("MEAT"));
                 }
                 break;
-            case "3": //SALAD
+            case 3: //SALAD
                 if(checksIfPlayerHasEnoughGold(player,"SALAD")){
                     player.setStackOfKiloSalad(player.getStackOfKiloSalad()+1);
                     withdrawGoldFromPlayer(player,storePrices.get("SALAD"));
                 }
                 break;
-            case "0": //Go back
+            case 0: //Go back
                 return false;
             default:
                 System.out.println("Please enter a valid key");
-                startProcessOfBuyingFoodFromStore(player);
+
         }
 
         if(IOFunctions.printAndAskIfUserAreSure(
@@ -231,7 +230,7 @@ public class Store {
 
             System.out.println("Enter " + number + " to sell your "
                     + animal.getName().toUpperCase() + " for "
-                    + sellPrice + " gold (type: "
+                    + Math.floor(sellPrice) + " gold (type: "
                     + animal.getAnimalType() + ", health: "
                     + animal.getHealth() + ", gender: "
                     + animal.getGender() + ").");

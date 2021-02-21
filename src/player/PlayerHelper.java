@@ -53,11 +53,10 @@ public class PlayerHelper {
 
         int x = Game.players.size();
 
-        for(int i = 0; i < x; i++){
+        for(int i = x-1; i >= 0; i--){
             if(Game.players.get(i).getGold() == 0 && Game.players.get(i).animals().size() < 1){
                 System.out.println(Game.players.get(i).getPlayerName() + " has been eliminated and lost the game.");
                 Game.players.remove(i);
-                x--;
             }
         }
 

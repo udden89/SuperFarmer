@@ -43,8 +43,8 @@ public class AnimalHelper {
         IOFunctions.printLine();
         System.out.println("Give your new " + animalType + " a name: ");
 
-        return RandomGameMode.randomName();//TODO remove this when not debugging and activate the line below
-        //return IOFunctions.inputString();
+        //return RandomGameMode.randomName();// RANDOM NAME GENERATOR
+        return IOFunctions.inputString();
     }
 
 
@@ -82,7 +82,7 @@ public class AnimalHelper {
             Player player = Game.players.get(i);
 
             //Loop through all animals and decrease its health & increase its age.
-            for(int j = 0; j < animals.size(); j++){
+            for(int j = animals.size()-1; j >= 0; j--){
 
                 Animal animal = animals.get(j);
 
@@ -100,14 +100,23 @@ public class AnimalHelper {
                     animal.roundsBeforeDeathIfSick--;
                 }
 
-                //If health < 0, animal reached max health or animal is sick remove the animal.
-                if(animal.getHealth() <= 0
-                        || animal.getAge() == animal.getDeathAtAge()
-                        || animal.roundsBeforeDeathIfSick == 0){
 
-                    System.out.println(player.getPlayerName() + ", your " + animal.getName() + " has died");
+                if(animal.getHealth() <= 0){
+                    System.out.println(player.getPlayerName() + ", your " + animal.getName() + " has died due to health was below 0");
                     animals.remove(animal);
-                    i--;
+                    continue;
+                }
+
+                if(animal.getAge() == animal.getDeathAtAge()){
+                    System.out.println(player.getPlayerName() + ", your " + animal.getName() + " has died because of its age");
+                    animals.remove(animal);
+                    continue;
+                }
+
+                if(animal.roundsBeforeDeathIfSick == 0){
+                    System.out.println(player.getPlayerName() + ", your " + animal.getName() + " has died because of its illness");
+                    player.setSickAnimals(player.getSickAnimals()-1);
+                    animals.remove(animal);
                     continue;
                 }
 
@@ -116,7 +125,7 @@ public class AnimalHelper {
                     animal.setSick(true);
                     player.setSickAnimals(player.getSickAnimals()+1);
                     IOFunctions.printSomethingWithThreadSleep(player.getPlayerName() + ", your " + animal.getName() + " has become ill and needs to see a veterinary"
-                            + " (otherwise it will die under the next 1-3 rounds).", 50);
+                            + " (otherwise it will die under the next 1-3 rounds).", 5);
 
                 }
 

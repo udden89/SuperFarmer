@@ -43,7 +43,7 @@ public class Game implements Serializable {
         IOFunctions.printLine();
         boolean choice = IOFunctions.printAndAskIfUserAreSure("Do you want to load a game? ");
         if(choice){
-            GameHelper.loadGame();
+                GameHelper.loadGame();
         }
 
         //Decides how many players.
@@ -64,11 +64,11 @@ public class Game implements Serializable {
         //Sets the player names
         for (int i = 1; i <= howManyPlayers; i++) {
             System.out.println("Enter a name for player " + i + ": ");
-            String playerName = RandomGameMode.randomName(); //TODO remove this when not debugging and activate the line below
-            //String playerName = IOFunctions.inputString();
+            //String playerName = RandomGameMode.randomName();
+            String playerName = IOFunctions.inputString();
             Player player = new Player(playerName);
             players.add(player);
-            //players.add(Player.createNewPlayer(playerName));                          //
+
         }
 
 
@@ -76,7 +76,6 @@ public class Game implements Serializable {
         IOFunctions.printLine();
         System.out.println("\nHow many rounds do you want to play (5-30)?");
         while (gameRounds < 5 || gameRounds > 30) {
-            //gameRounds = 30;    //TODO remove this when not debugging and activate the line below
             gameRounds = IOFunctions.convertStringToInt();
             if (gameRounds < 5 || gameRounds > 30) {
                 System.out.println("Please enter rounds between 5-30");

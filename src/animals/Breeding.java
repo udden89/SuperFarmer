@@ -13,10 +13,19 @@ public class Breeding {
         AnimalHelper.printAnimalToChoose(player.animals, "Breeding", "breed");
 
         //Chose a animal to breed.
-        Animal animalToBreed = player.animals.get(IOFunctions.convertStringToInt(0, player.animals.size())-1);
+        int indexAnimal = IOFunctions.convertStringToInt(0, player.animals.size());
+
+        if(indexAnimal <= 0){
+            return false;
+        }
+
+        Animal animalToBreed = player.animals.get(indexAnimal-1);
 
         //Chose a second animal to breed with the first one.
         Animal breedingPartner = chooseBreedingPartner(player, animalToBreed);
+        if(breedingPartner==null){
+            return false;
+        }
 
         printChanceToBreed(animalToBreed, breedingPartner, calculateBonusChance(animalToBreed, breedingPartner));
 
@@ -91,9 +100,17 @@ public class Breeding {
         ArrayList<Animal> tempAnimalList = new ArrayList<>();
 
         addSuitableBreedingPartnersToList(player, firstAnimal, tempAnimalList);
+
+        if(tempAnimalList.isEmpty()){
+            System.out.println("Sorry, no available partners!");
+            return null;
+        }
+
         printAllSuitablePartners(tempAnimalList);
 
-        return tempAnimalList.get(IOFunctions.convertStringToInt()-1);
+        int animalIndex = IOFunctions.convertStringToInt(1,tempAnimalList.size());
+
+        return tempAnimalList.get(animalIndex-1);
 
     }
 
@@ -103,13 +120,13 @@ public class Breeding {
         for (Animal animal : player.animals) {
 
             //Filter of suitable partners.
-            if(!(firstAnimal.getName().equalsIgnoreCase(animal.getName()))
-                    || !(firstAnimal.getGender().equalsIgnoreCase(animal.getGender()))
-                    && (firstAnimal.getAnimalType().equalsIgnoreCase(animal.getAnimalType()))){
+            if((firstAnimal.getName().equalsIgnoreCase(animal.getName()))
+                    || (firstAnimal.getGender().equalsIgnoreCase(animal.getGender()))
+                    || (!firstAnimal.getAnimalType().equalsIgnoreCase(animal.getAnimalType()))){
+            continue;
 
-                tempAnimalList.add(animal);
             }
-
+            tempAnimalList.add(animal);
         }
     }
 
@@ -128,8 +145,8 @@ public class Breeding {
             number++;
         }
 
-        if(tempAnimalList.isEmpty()){
-            System.out.println("Sorry, no available partners!");
-        }
+
+
+
     }
 }

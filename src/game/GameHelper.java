@@ -18,10 +18,10 @@ public class GameHelper extends Game implements Serializable {
 
         String star = "¤";
 
-        System.out.println(star.repeat(50)+"\n");
+        System.out.println("\n" + star.repeat(50)+"\n");
         IOFunctions.printSomethingWithThreadSleep( "\t" + player.getPlayerName(), 50);
         System.out.println("");
-        System.out.println("\t" + "Round: " + gameRounds);
+        System.out.println("\t" + "Rounds left: " + gameRounds);
         System.out.println("\tGold: "+ player.getGold() + " \t\t\tAnimals owned: " + player.animals.size());
         System.out.println("\tSick animals: "+player.getSickAnimals() + "\t\tTotal food in kg: " + PlayerHelper.totalKgFood(player) + "\n");
         System.out.println(star.repeat(50));
@@ -48,7 +48,6 @@ public class GameHelper extends Game implements Serializable {
 
     }
 
-
     public static void runEndgameProcess(){
 
         sellAllAnimals();
@@ -64,12 +63,11 @@ public class GameHelper extends Game implements Serializable {
             ArrayList<Animal> animals = player.animals;
 
             //Sells all animals and add gold to player.
-            for(int i = 0; i < animals.size(); i++){
+            for(int i = animals.size()-1; i >= 0; i--){
                 Animal animal = animals.get(i);
                 int value = (int)((double)animals.get(i).getHealth()/100)*Store.storePrices.get(animal.animalType);
                 player.setGold(player.getGold() + value);
                 animals.remove(animal);
-                i--;
 
             }
         }
@@ -146,20 +144,18 @@ public class GameHelper extends Game implements Serializable {
             if(savedGames.length != 0){
                 String fileName = "Saved games/" + chooseSavedGame(savedGames);
 
-
                 WhatToSave whatToSave = (WhatToSave) Serializer.deserialize(fileName);
                 whatToSave.loadGame();
                 Game.gameLoop();
+
             }else {
                 System.out.println("Sorry, no saved game files!");
                 System.out.println("So here is a new fresh game:");
             }
 
-
         }catch (Exception error){
-            System.out.println(error);
             System.out.println("Error in loading your game");
-            System.exit(0);
+            System.out.println("So here is a new fresh game:");
         }
 
     }

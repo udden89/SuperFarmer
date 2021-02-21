@@ -50,7 +50,7 @@ public class Veterinary {
 
         IOFunctions.printLine();
         if(IOFunctions.printAndAskIfUserAreSure("" +
-                "Do you want to try and cure your animal (50% chance of success)?")){
+                "Do you want to try and cure your animal (70% chance of success)?")){
 
             //Checks if afforded with veterinary
             if(Store.checksIfPlayerHasEnoughGold(player, curePrices.get(animal.animalType))) {
@@ -63,10 +63,15 @@ public class Veterinary {
 
     private static void putAllSickAnimalsIntoAnArray
             (Player player, ArrayList<Animal> animals, ArrayList<Animal> sickAnimals) {
+
+        int numbersOfSickAnimals = 0;
+
         for (Animal animal : animals){
+
             if(animal.isSick) {
                 sickAnimals.add(animal);
-                player.setSickAnimals(player.getSickAnimals()+1);
+                numbersOfSickAnimals++;
+                player.setSickAnimals(numbersOfSickAnimals);
             }
         }
     }
@@ -96,7 +101,7 @@ public class Veterinary {
     private static void cureAnimal(Player player, Animal animal){
 
         int random = IOFunctions.randomNumber(1, 100);
-        if(random >= 50){
+        if(random >= 30){
             animal.isSick = false;
             player.setGold(player.getGold()-curePrices.get(animal.animalType));
             System.out.println("You have successfully cured your " + animal.getName() + "!");
