@@ -51,7 +51,6 @@ public class Store {
         if(IOFunctions.printAndAskIfUserAreSure(
                 "Do you want to continue shopping animals? Otherwise your turn will end")){
 
-            GameHelper.printMainMenu(player);
             startProcessOfBuyingAnimalFromStore(player);
         }
 
@@ -64,10 +63,6 @@ public class Store {
         printFoodMenu();
 
         String choice = IOFunctions.inputString();
-
-        if(controlIfUserWantBackToMainMenu(choice)){
-            return false; //Returns to main menu
-        }
 
         switch (choice){
             case "1": //FISH
@@ -91,7 +86,8 @@ public class Store {
             case "0": //Go back
                 return false;
             default:
-                System.out.println(IOFunctions.wrongInput);
+                System.out.println("Please enter a valid key");
+                startProcessOfBuyingFoodFromStore(player);
         }
 
         if(IOFunctions.printAndAskIfUserAreSure(
@@ -118,9 +114,9 @@ public class Store {
 
     public static void printFoodMenu(){
 
-        System.out.println(IOFunctions.line);
+        IOFunctions.printLine();
         System.out.println("Buying delicious food");
-        System.out.println(IOFunctions.line);
+        IOFunctions.printLine();
 
         System.out.println("[1] - Buy 1 kg FISH for " + Store.storePrices.get("FISH") + " gold");
         System.out.println("[2] - Buy 1 kg MEAT for " + Store.storePrices.get("MEAT") + " gold");

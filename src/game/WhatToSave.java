@@ -11,6 +11,7 @@ public class WhatToSave implements Serializable {
 
     // All the players of the game
     ArrayList<Player> players;
+    int whoseTurnInIndex;
 
     //Start variables
     int gameRounds;
@@ -21,9 +22,7 @@ public class WhatToSave implements Serializable {
         this.players = Game.players;
         this.gameRounds = Game.gameRounds;
         this.howManyPlayers = Game.howManyPlayers;
-
-        System.out.println("Lyckades! constructor in whattosave");
-
+        this.whoseTurnInIndex = Game.whoseTurnInIndex;
     }
 
     public void loadGame(){
@@ -34,7 +33,7 @@ public class WhatToSave implements Serializable {
         Game.players = this.players;
         Game.gameRounds = this.gameRounds;
         Game.howManyPlayers = this.howManyPlayers;
-        System.out.println("Lyckades komma in i loadgame i whattosave");
+        Game.whoseTurnInIndex = this.whoseTurnInIndex;
     }
 
 }

@@ -9,52 +9,34 @@ import java.util.ArrayList;
 
 public class Feeding {
 
-    public static boolean feedAnimalMenu(Player player, ArrayList<Animal> animals){
 
-        while(true){
+    public static boolean startProcessOfFeedingAnimal(Player player, ArrayList<Animal> animals){
 
-            AnimalHelper.printAnimalToChoose(animals,"Feeding animals", "feed");
+        AnimalHelper.printAnimalToChoose(animals,"Feeding animals", "feed");
+        Animal animal = animals.get(IOFunctions.convertStringToInt(0, animals.size()-1));
 
-            int choice = IOFunctions.convertStringToInt();
-            if (choice == 0){
-                return false;
-            }
-
-            //Loop for finding the right animal of users choice.
-            for(int i = 0; i <animals.size(); i++){
-                if(animals.get(choice-1).getName().equals(animals.get(i).getName())){
-
-                    switch (animals.get(i).getClass().getSimpleName().toUpperCase()){
-                        case "WOLF":
-                            if(feeding(player, animals, i)){
-                                return true;
-                            }
-
-                        default:
-                            return false;
-                    }
-                }
-            }
-        }
-
+        if(feeding(player, animal)){
+            return true;
+        }else
+            return false;
     }
 
-    public static boolean feeding(Player player, ArrayList<Animal> animals, int index){
+    public static boolean feeding(Player player, Animal animal){
 
         while(true){
 
-            System.out.println(IOFunctions.line);
-            System.out.println("Feeding " + animals.get(index).getName() + " with: \n");
+            IOFunctions.printLine();
+            System.out.println("Feeding " + animal.getName() + " with: \n");
 
-            if(animals.get(index).isEatsFish()){
+            if(animal.isEatsFish()){
                 System.out.println("Press F for fish (you have: " + player.getStackOfKiloFish()
                         + " kilo available. Fish restores 10-30% health/kg)");
             }
-            if(animals.get(index).isEatsMeat()){
+            if(animal.isEatsMeat()){
                 System.out.println("Press M for meat (you have: " + player.getStackOfKiloMeat()
                         + " kilo available. Meat restores 10-30% health/kg)");
             }
-            if(animals.get(index).isEatsSalad()){
+            if(animal.isEatsSalad()){
                 System.out.println("Press S for salad (you have: " + player.getStackOfKiloSalad()
                         + " kilo available. Salad restores 10-30% health/kg)");
             }
@@ -73,10 +55,10 @@ public class Feeding {
                     if(player.getStackOfKiloFish() >= kilo){
                         System.out.println("How many kilo of fish do you want to use?");
                         kilo = IOFunctions.convertStringToInt();
-                        if(!IOFunctions.printAndAskIfUserAreSure(" use these fish?")){
+                        if(!IOFunctions.printAndAskIfUserAreSure("Are you sure? This will end your turn.")){
                             return false;
                         }
-                        restoreHealth(animals.get(index), kilo);
+                        restoreHealth(animal, kilo);
                         player.setStackOfKiloFish(player.getStackOfKiloFish()-kilo);
                     return true;
                     }
@@ -87,7 +69,36 @@ public class Feeding {
 
                 case "M":
 
+                    if(player.getStackOfKiloMeat() >= kilo){
+                        System.out.println("How many kilo of meat do you want to use?");
+                        kilo = IOFunctions.convertStringToInt();
+                        if(!IOFunctions.printAndAskIfUserAreSure("Are you sure? This will end your turn.")){
+                            return false;
+                        }
+                        restoreHealth(animal, kilo);
+                        player.setStackOfKiloMeat(player.getStackOfKiloMeat()-kilo);
+                        return true;
+                    }
+                    else {
+                        System.out.println(IOFunctions.notInStock);
+                        return false;
+                    }
+
                 case "S":
+                    if(player.getStackOfKiloSalad() >= kilo){
+                        System.out.println("How many kilo of salad do you want to use?");
+                        kilo = IOFunctions.convertStringToInt();
+                        if(!IOFunctions.printAndAskIfUserAreSure("Are you sure? This will end your turn.")){
+                            return false;
+                        }
+                        restoreHealth(animal, kilo);
+                        player.setStackOfKiloSalad(player.getStackOfKiloSalad()-kilo);
+                        return true;
+                    }
+                    else {
+                        System.out.println(IOFunctions.notInStock);
+                        return false;
+                    }
 
                 case "0":
                     return false;

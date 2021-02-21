@@ -11,14 +11,14 @@ import java.util.ArrayList;
 public class AnimalHelper {
 
 
-    public static String setGenderOfNewAnimal(String animalType, boolean random) {
+    public static String setGenderOfNewAnimal(String animalType, boolean createWithRandomGender) {
 
-        if (random){
+        if (createWithRandomGender){
             int number = (int) (Math.random() * 10) + 1;
             return number <= 5 ? "FEMALE" : "MALE";
         }
 
-        System.out.println(IOFunctions.line);
+        IOFunctions.printLine();
         System.out.println("What gender do you want on your new " + animalType + "?" );
         System.out.println("Press F for female");
         System.out.println("Press M for male");
@@ -40,7 +40,7 @@ public class AnimalHelper {
 
     public static String inputNameOfNewAnimal(String animalType){
 
-        System.out.println(IOFunctions.line);
+        IOFunctions.printLine();
         System.out.println("Give your new " + animalType + " a name: ");
 
         return RandomGameMode.randomName();//TODO remove this when not debugging and activate the line below
@@ -107,20 +107,22 @@ public class AnimalHelper {
 
     }
 
-    //Decrease health, increase age and making animal sick.
+    //Decrease health, increase age and make animal sick.
     public static void decreaseAnimalHealthAndAgePerRound(){
 
+        //Loop through all players
         for (int i = 0; i < Game.players.size(); i++){
 
             ArrayList<Animal> animals = Game.players.get(i).animals;
             Player player = Game.players.get(i);
 
+            //Loop through all animals and decrease its health & increase its age.
             for(int j = 0; j < animals.size(); j++){
 
                 Animal animal = animals.get(j);
 
                 int health = animal.getMaxHealth();
-                int sickRandom = (int) (Math.random() * 100) + 1;
+                int sickRandomGenerator = (int) (Math.random() * 100) + 1;
                 double min = (0.1 * health); //Min 10% of health
                 double max = ( (0.3 * health) -min) +1; //Max 30% of health
                 int decreaseHealth = (int) (Math.random() * (max))+ (int)min;
@@ -144,10 +146,13 @@ public class AnimalHelper {
                     continue;
                 }
 
-                if(!animal.isSick && sickRandom <= 20){
+                if(!animal.isSick && sickRandomGenerator <= 20){
+                    IOFunctions.printLine();
                     animal.setSick(true);
-                    System.out.println(player.getPlayerName() + ", your " + animal.getName() + " has become ill and needs to see a veterinary"
-                            + " (otherwise it will die under the next 1-3 rounds).");
+                    player.setSickAnimals(player.getSickAnimals()+1);
+                    IOFunctions.printSomethingWithThreadSleep(player.getPlayerName() + ", your " + animal.getName() + " has become ill and needs to see a veterinary"
+                            + " (otherwise it will die under the next 1-3 rounds).", 50);
+
                 }
 
             }

@@ -17,27 +17,37 @@ public class GameHelper extends Game implements Serializable {
     public static void printMainMenu(Player player){
 
         String star = "¤";
-        String mid = "                        ";
 
         System.out.println(star.repeat(50)+"\n");
-        System.out.print(mid);
-        IOFunctions.printSomethingWithThreadSleep(player.getPlayerName(), 50);
+        IOFunctions.printSomethingWithThreadSleep( "\t" + player.getPlayerName(), 50);
         System.out.println("");
         System.out.println("\t" + "Round: " + gameRounds);
         System.out.println("\tGold: "+ player.getGold() + " \t\t\tAnimals owned: " + player.animals.size());
         System.out.println("\tSick animals: "+player.getSickAnimals() + "\t\tTotal food in kg: " + PlayerHelper.totalKgFood(player) + "\n");
         System.out.println(star.repeat(50));
         System.out.println(
-                "What do you want to do?\n" +
+                "\nWhat do you want to do?\n\n" +
                         "[1] - Buy animals\n" +
                         "[2] - Buy food\n" +
                         "[3] - Feed animals\n" +
                         "[4] - Breed animals\n" +
                         "[5] - Sell animals\n" +
                         "[6] - To see veterinary\n" +
-                        "[7] - To see your farm\n");
+                        "[7] - To see your farm\n\n" +
+                        "[9] - To save your game\n" +
+                        "[0] - Skip turn\n");
 
     }
+
+    public static void printRulesOfTheGame(){
+
+        System.out.println("The rules are: \n" +
+                "Buy animals, breed them and sell them. \n" +
+                "The player with most money at the end wins the game. \n" +
+                "You can only do one kind of action per turn");
+
+    }
+
 
     public static void runEndgameProcess(){
 
@@ -68,22 +78,38 @@ public class GameHelper extends Game implements Serializable {
     //TODO DOUBLE CHECK THIS LOOP LOGIC!!
     private static void setAWinner(){
 
-        //Sorts the players by their gold and puts the players into a descending winner list.
-        for(int i = players.size()-1; i > 0; i--){
-            if(players.get(i).getGold() > players.get(0).getGold()){
-                Player tempPlayer = players.get(i);
-                players.remove(i);
-                players.add(0,tempPlayer);
+        int length = players.size();
+
+        //Sorts the player with most gold using bubble sorting
+        for(int i = 0; i < length-1; i++ ){
+
+            for(int j = 0; j < length-i-1; j++){
+
+                if(players.get(j).getGold() < players.get(j+1).getGold()){
+                    Player tempPlayer = players.get(j);
+                    players.set(j, players.get(j+1));
+                    players.set(j+1, tempPlayer);
+                }
+
             }
+
         }
+
     }
 
     private static void printWinners(){
+        int number = 1;
+        IOFunctions.printLine();
+        IOFunctions.printLine();
+        IOFunctions.printLine();
+        System.out.println("The winner are:");
         for(int i = 0; i < players.size(); i++){
-            int number = 1;
-            System.out.println("The winner are:");
             System.out.println("[" + number + "] - " + players.get(i).getPlayerName() + "!!! Total gold: " + players.get(i).getGold());
+            number++;
         }
+        IOFunctions.printLine();
+        IOFunctions.printLine();
+        IOFunctions.printLine();
     }
 
     public static boolean saveGame(){
@@ -102,7 +128,7 @@ public class GameHelper extends Game implements Serializable {
         }else {
             System.out.println("Already a saved game with that name.");
             if(IOFunctions.printAndAskIfUserAreSure("Do you want to overwrite the existing saved game?")){
-                Serializer.serialize("Saved games" + savedGame, whatToSave );
+                Serializer.serialize("Saved games/" + savedGame, whatToSave );
             }
 
         }
@@ -112,17 +138,26 @@ public class GameHelper extends Game implements Serializable {
 
     public static void loadGame(){
 
-        File[] savedGames = new File("Saved games").listFiles();
-
-        printAllSavedGames(savedGames);
-        String fileName = "Saved games/" + chooseSavedGame(savedGames);
-
         try{
-          WhatToSave whatToSave = (WhatToSave) Serializer.deserialize(fileName);
-          whatToSave.loadGame();
-          Game.gameLoop();
+            File[] savedGames = new File("Saved games").listFiles();
+
+            printAllSavedGames(savedGames);
+
+            if(savedGames.length != 0){
+                String fileName = "Saved games/" + chooseSavedGame(savedGames);
+
+
+                WhatToSave whatToSave = (WhatToSave) Serializer.deserialize(fileName);
+                whatToSave.loadGame();
+                Game.gameLoop();
+            }else {
+                System.out.println("Sorry, no saved game files!");
+                System.out.println("So here is a new fresh game:");
+            }
+
 
         }catch (Exception error){
+            System.out.println(error);
             System.out.println("Error in loading your game");
         }
 
@@ -147,7 +182,7 @@ public class GameHelper extends Game implements Serializable {
         }
 
         System.out.println("Which game do you want to load?");
-        int choice = IOFunctions.convertStringToInt();
+        int choice = IOFunctions.convertStringToInt(1,tempListOFSavedGames.size());
         return tempListOFSavedGames.get(choice-1);
 
     }

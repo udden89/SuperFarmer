@@ -6,11 +6,7 @@ import player.*;
 import store.Store;
 import store.Veterinary;
 
-import java.io.File;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import static game.IOFunctions.printSomethingWithThreadSleep;
@@ -20,6 +16,8 @@ public class Game implements Serializable {
 
     // All the players of the game
     public static ArrayList<Player> players = new ArrayList<>();
+
+    public static int whoseTurnInIndex = 0;
 
     //Start variables
     public static int gameRounds;
@@ -39,20 +37,14 @@ public class Game implements Serializable {
         IOFunctions.printLine();
         System.out.println("Welcome to Farm of the year game!");
 
+        GameHelper.printRulesOfTheGame();
 
-        //The rules of the game
-        IOFunctions.printLine();
-        System.out.println("The rules are: \n" +
-                "Buy animals, breed them and sell them. \n" +
-                "The player with most money at the end wins the game");
-
+        //Load game
         IOFunctions.printLine();
         boolean choice = IOFunctions.printAndAskIfUserAreSure("Do you want to load a game? ");
         if(choice){
             GameHelper.loadGame();
         }
-
-
 
         //Decides how many players.
         IOFunctions.printLine();
@@ -62,9 +54,11 @@ public class Game implements Serializable {
             if (howManyPlayers < 1 || howManyPlayers > 4) {
                 System.out.println("Please enter a player count between 1-4");
             }
-            IOFunctions.printLine();
-            System.out.println("You have chosen: " + howManyPlayers + " players");
+
         }
+
+        IOFunctions.printLine();
+        System.out.println("You have chosen: " + howManyPlayers + " players");
 
 
         //Sets the player names
@@ -111,21 +105,21 @@ public class Game implements Serializable {
 
             for(int i = gameRounds; i > 0 ; i--){
 
-                for(Player player : players){
-                    if(actionOfPlayer(player)){
-
-                    }
+                for(int j = whoseTurnInIndex; j < players.size(); j++){
+                    actionOfPlayer(players.get(j));
+                    whoseTurnInIndex++;
                 }
 
                 AnimalHelper.decreaseAnimalHealthAndAgePerRound();
                 PlayerHelper.checkIfPlayerLost();
 
+                whoseTurnInIndex = 0;
                 gameRounds--;
             }
         }
 
         GameHelper.runEndgameProcess();
-
+        System.exit(0);
     }
 
     public static boolean actionOfPlayer(Player player){
@@ -150,7 +144,7 @@ public class Game implements Serializable {
                     break;
 
                 case 3:
-                    if(Feeding.feedAnimalMenu(player, player.animals())){
+                    if(Feeding.startProcessOfFeedingAnimal(player, player.animals())){
                         return true;
                     }
                     break;
@@ -175,12 +169,15 @@ public class Game implements Serializable {
 
                 case 7:
                     PlayerHelper.printPlayerInfo(player);
-                    //InputAndOutputFunctions.pressEnterToContinue();
                     break;
 
                 case 9:
                     GameHelper.saveGame();
+                    System.exit(0);
                     break;
+
+                case 0:
+                    return true;
 
                 default:
 

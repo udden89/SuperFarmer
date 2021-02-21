@@ -31,7 +31,7 @@ public abstract class Animal extends Object implements Serializable {
     public static ArrayList<String> typeOfAnimals = new ArrayList<>();
 
 
-    Animal(String name, String gender, boolean eatsFish, boolean eatsMeat, boolean eatsSalad,
+    Animal(String gender, String name, boolean eatsFish, boolean eatsMeat, boolean eatsSalad,
            String animalType, String animalTypePlural, int maxNewbornBabies) {
         this.name = name;
         this.gender = gender;
@@ -56,7 +56,7 @@ public abstract class Animal extends Object implements Serializable {
 
     }
 
-    //Everytime a new animal creates play it's sound
+    //Everytime a new animal getting created, play it's sound
     private static void playSoundEffectOfAnimal(String animalType) {
         String filePath = "Sound effects/" + animalType + ".wav";
         Audio audio = new Audio();

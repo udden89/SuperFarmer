@@ -13,7 +13,7 @@ public class BabyJedi extends Animal implements Serializable {
 
     private static int maxNewbornBabies = 1;
 
-    public BabyJedi(String name, String gender) {
+    public BabyJedi(String gender, String name) {
         super(gender, name, eatsFish, eatsMeat, eatsSalad, animalTypeSingular, animalTypePlural, maxNewbornBabies);
     }
 }

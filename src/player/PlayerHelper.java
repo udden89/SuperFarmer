@@ -10,12 +10,10 @@ import java.util.ArrayList;
 public class PlayerHelper {
 
     public static void printPlayerInfo(Player player){
-        System.out.println(IOFunctions.line);
+        IOFunctions.printLine();
         System.out.println(player.getPlayerName() + ", you have in your farm: \n");
         System.out.println(player.getGold() + " gold");
         printAPlayersAnimals(player.animals());
-
-
     }
 
     public static int totalKgFood(Player player){
@@ -24,20 +22,20 @@ public class PlayerHelper {
 
     public static void printAPlayersAnimals(ArrayList<Animal> animals){
 
-        System.out.println(IOFunctions.line);
+        IOFunctions.printLine();
         System.out.println("ANIMALS: ");
 
         for(Animal animal : animals){
-            System.out.print("\n" + animal.getClass().getSimpleName() + ": \t\t" + animal.getName());
+            System.out.print("\n" + animal.getClass().getSimpleName() + ": " + animal.getName());
             if(animal.isSick) {
                 System.out.println(" (needs to see veterinary)");
             }else{
                 System.out.println("\t");
             }
-            System.out.println("Gender: \t"  + animal.getGender());
-            System.out.println("Age: \t\t" + animal.getAge());
-            System.out.println("Health: \t" + animal.getHealth());
-            System.out.print("Eats: \t\t");
+            System.out.println("Gender: "  + animal.getGender());
+            System.out.println("Age: " + animal.getAge());
+            System.out.println("Health: " + animal.getHealth());
+            System.out.print("Eats: ");
             if(animal.isEatsFish()){
                 System.out.print("<FISH> ");
             }
