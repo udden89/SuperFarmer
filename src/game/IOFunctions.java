@@ -42,6 +42,7 @@ public class IOFunctions {
             try{
                 int number = Integer.parseInt(scan.nextLine());
                 if(number < min || number > max){
+                    System.out.println("2");
                     System.out.println("Please enter a correct number");
                     continue;
                 }
@@ -49,6 +50,7 @@ public class IOFunctions {
                 return number;
 
             }catch(Exception exception) {
+                System.out.println("1");
                 System.out.println("Please enter a correct number");
             }
         }

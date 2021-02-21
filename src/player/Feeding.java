@@ -12,13 +12,22 @@ public class Feeding {
 
     public static boolean startProcessOfFeedingAnimal(Player player, ArrayList<Animal> animals){
 
-        AnimalHelper.printAnimalToChoose(animals,"Feeding animals", "feed");
-        Animal animal = animals.get(IOFunctions.convertStringToInt(0, animals.size()-1));
-
-        if(feeding(player, animal)){
-            return true;
-        }else
+        if(animals.size() <= 0){
+            System.out.println("You have no animals to feed!");
             return false;
+        }
+
+        AnimalHelper.printAnimalToChoose(animals,"Feeding animals", "feed");
+        int indexOfAnimal = IOFunctions.convertStringToInt(0, animals.size());
+
+        if(indexOfAnimal < 1){
+            return false;
+        }
+
+        Animal animal = animals.get(indexOfAnimal-1);
+
+
+        return feeding(player, animal);
     }
 
     public static boolean feeding(Player player, Animal animal){

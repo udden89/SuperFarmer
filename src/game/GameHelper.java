@@ -159,6 +159,7 @@ public class GameHelper extends Game implements Serializable {
         }catch (Exception error){
             System.out.println(error);
             System.out.println("Error in loading your game");
+            System.exit(0);
         }
 
     }

@@ -47,41 +47,6 @@ public class AnimalHelper {
         //return IOFunctions.inputString();
     }
 
-    public static void printAboutAnimals(String animalType){
-
-        switch (animalType.toUpperCase()){
-
-            case "WOLF":
-                System.out.println(IOFunctions.line);
-                System.out.println("About the wolves: ");
-                break;
-
-            case "PANDA":
-                System.out.println(IOFunctions.line);
-                System.out.println("About the pandas: ");
-                break;
-
-            case "BEAR":
-                System.out.println(IOFunctions.line);
-                System.out.println("About the bears: ");
-                break;
-
-            case "EAGLE":
-                System.out.println(IOFunctions.line);
-                System.out.println("About the eagles: ");
-                break;
-
-            case "BABY JEDI":
-                System.out.println(IOFunctions.line);
-                System.out.println("About the baby jedi´s: ");
-                break;
-
-            default:
-                System.out.println("Something went wrong in printAnimalInfo");
-
-        }
-
-    }
 
     public static void printAnimalToChoose(ArrayList<Animal> animals, String menuName , String verb){
 
