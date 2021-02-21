@@ -5,6 +5,7 @@ import game.*;
 import game.IOFunctions;
 import player.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Store {
@@ -264,17 +265,13 @@ public class Store {
     private static boolean sellAnimalToOtherPlayer(Player player, Animal animalToSell){
 
         System.out.println("Choose which player you want to sell to");
-        printAllPlayers();
 
-        Player playerToSellTo = Game.players.get(IOFunctions.convertStringToInt( 1, Game.players.size()));
-
-        boolean areYouSure;
-        areYouSure = IOFunctions.printAndAskIfUserAreSure(
-                "Do you both agree on this transaction of " + animalToSell.getName()+ "?");
+        Player playerToSellTo = printAndChoseAPlayerToSellTo(player);
 
         double sellPrice = ((double)animalToSell.getHealth()/100)* storePrices.get(animalToSell.animalType);
-        if(areYouSure) {
-            player.setGold((int) (player.getGold() + sellPrice));
+
+        if(IOFunctions.printAndAskIfUserAreSure(
+                "Do you both agree on this transaction of " + animalToSell.getName()+ "?")) {
 
             //Add and remove animal between owners.
             playerToSellTo.animals().add(animalToSell);
@@ -285,9 +282,11 @@ public class Store {
 
             //Adds gold to seller
             player.setGold(player.getGold() + (int)sellPrice);
+
+            return true;
         }
 
-        return areYouSure;
+        return false;
     }
 
     private static boolean sellAnimalToStore(Player player, Animal animalToSell){
@@ -305,17 +304,22 @@ public class Store {
         return areYouSure;
     }
 
-    private static void printAllPlayers(){
+    private static Player printAndChoseAPlayerToSellTo(Player player){
+
+        ArrayList<Player> tempPlayers = new ArrayList<>();
+
+        tempPlayers.addAll(Game.players);
+        tempPlayers.remove(player);
 
         int counter = 1;
-        //Prints all available players
-        for(Player players : Game.players){
-            if(!players.getPlayerName().equalsIgnoreCase(Game.players.get(0).getPlayerName())){
-                System.out.println("[" + counter + "] - " + players.getPlayerName());
-                counter++;
-            }
 
+        //Prints all available players
+        for(int i = 0; i < tempPlayers.size(); i++){
+            System.out.println("[" + counter + "] - " + tempPlayers.get(i).getPlayerName());
+            counter++;
         }
+
+        return tempPlayers.get(IOFunctions.convertStringToInt(1, tempPlayers.size())-1);
 
     }
 
